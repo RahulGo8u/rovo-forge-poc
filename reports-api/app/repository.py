@@ -52,9 +52,36 @@ class ReportsRepository:
     def get_attributes(self, report_id: int) -> dict[str, Any]:
         return _ok(self._keyed("attributes", report_id), meta={"report_id": report_id})
 
-    def get_status_timeline(self, report_id: int, *, limit: int = 25) -> dict[str, Any]:
+    def get_report_status_history(self, report_id: int, *, limit: int = 25) -> dict[str, Any]:
         rows = self._keyed("status_timeline", report_id)[: max(1, min(limit, 100))]
         return _ok(rows, meta={"report_id": report_id})
+
+    def get_task_status(self, report_id: int) -> dict[str, Any]:
+        payload = self._seed.get("task_status", {}).get(str(report_id))
+        if not payload:
+            return {
+                "ok": False,
+                "source": "seed",
+                "row_count": 0,
+                "data": None,
+                "meta": {"report_id": report_id, "error": "No operations task found for this report"},
+            }
+        active = payload.get("active_states") or []
+        history = payload.get("state_history") or []
+        current = active[0] if active else None
+        return _ok(
+            {
+                "task": payload.get("task"),
+                "current_state": current,
+                "active_states": active,
+                "state_history": history,
+            },
+            meta={
+                "report_id": report_id,
+                "task_id": (payload.get("task") or {}).get("TaskID"),
+                "current_state_name": (current or {}).get("StateName"),
+            },
+        )
 
     def get_email_availability(self, *, org_node_id: int | None, profile_id: int | None) -> dict[str, Any]:
         rows: list[dict[str, Any]] = []
@@ -135,8 +162,9 @@ class ReportsRepository:
                 "products": self.get_products(report_id)["data"],
                 "attributes": self.get_attributes(report_id)["data"],
                 "delivery_rules": self.get_delivery_rules(report_id)["data"],
-                "status_timeline": self.get_status_timeline(report_id)["data"],
-                "email_availability": self.get_email_availability(
+                "report_status_history": self.get_report_status_history(report_id)["data"],
+                "task_status": self.get_task_status(report_id).get("data"),
+                "customer_email_settings": self.get_email_availability(
                     org_node_id=org_node_id, profile_id=report.get("ProfileID")
                 )["data"],
             },

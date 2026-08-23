@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
-from ..models import QuickInvestigateResponse, TriageVerdict
+from ..models import DiagnoseDeliveryResponse, TriageVerdict
 from ..repository import ReportsRepository
 
 
@@ -78,11 +78,11 @@ def _analyze_delivery_rules(rules: list[dict[str, Any]]) -> tuple[TriageVerdict,
     )
 
 
-def quick_investigate(repo: ReportsRepository, *, lookup: int, lookup_kind: str = "auto") -> QuickInvestigateResponse:
+def diagnose_delivery_config(repo: ReportsRepository, *, lookup: int, lookup_kind: str = "auto") -> DiagnoseDeliveryResponse:
     resolved = repo.resolve_identifier(lookup, kind=lookup_kind)  # type: ignore[arg-type]
     candidates = resolved.get("data") or []
     if not candidates:
-        return QuickInvestigateResponse(
+        return DiagnoseDeliveryResponse(
             ok=False,
             source=repo.source,
             lookup=str(lookup),
@@ -93,7 +93,7 @@ def quick_investigate(repo: ReportsRepository, *, lookup: int, lookup_kind: str 
                 confidence=90,
             ),
             findings=["Identifier did not resolve to any report."],
-            next_checks=["Verify ReportID/OrderID/CustomerID/OrgNodeID/ProfileID.", "Use /samples/reports for seeded IDs."],
+            next_checks=["Verify ReportID/OrderID/CustomerID/OrgNodeID/ProfileID.", "Use /reports/seed-examples for seeded IDs."],
         )
 
     top = candidates[0]
@@ -103,7 +103,7 @@ def quick_investigate(repo: ReportsRepository, *, lookup: int, lookup_kind: str 
     rules = payload.get("delivery_rules") or []
     verdict, findings, next_checks = _analyze_delivery_rules(rules)
 
-    return QuickInvestigateResponse(
+    return DiagnoseDeliveryResponse(
         ok=True,
         source=repo.source,
         report_id=report_id,
@@ -113,7 +113,7 @@ def quick_investigate(repo: ReportsRepository, *, lookup: int, lookup_kind: str 
         report=payload.get("report"),
         delivery_rules=rules,
         products=payload.get("products") or [],
-        email_availability=payload.get("email_availability") or [],
+        email_availability=payload.get("customer_email_settings") or [],
         findings=findings,
         next_checks=next_checks,
     )

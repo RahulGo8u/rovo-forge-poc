@@ -17,7 +17,7 @@ class TriageVerdict(BaseModel):
     confidence: int = Field(ge=0, le=100)
 
 
-class QuickInvestigateRequest(BaseModel):
+class DiagnoseDeliveryRequest(BaseModel):
     lookup: str = Field(..., min_length=1, max_length=32, examples=["44840403", "99100234"])
     lookup_kind: Literal["auto", "ReportID", "OrderID", "CustomerID", "OrgNodeID", "ProfileID"] = "auto"
 
@@ -36,7 +36,7 @@ class QuickInvestigateRequest(BaseModel):
         return raw
 
 
-class QuickInvestigateResponse(BaseModel):
+class DiagnoseDeliveryResponse(BaseModel):
     ok: bool = True
     source: Literal["seed"] = "seed"
     report_id: int | None = None

@@ -308,6 +308,235 @@
     "200101": [],
     "310202": []
   },
+  "task_status": {
+    "44840403": {
+      "task": {
+        "TaskID": 90044840403,
+        "ReportID": 44840403,
+        "ProfileID": 55001,
+        "MasterProfileID": 55001,
+        "OrgNodeID": 88012,
+        "CompanyID": 120045,
+        "PrimaryProduct": "Premium Roof Report",
+        "DeliveryProduct": "Premium Roof Report",
+        "PriorityIndex": 3,
+        "DueDate": "2025-11-18T00:00:00",
+        "DueDateAdjusted": "2025-11-18T00:00:00",
+        "EvmDirectory": "evm/44840403",
+        "JobId": "job-44840403",
+        "ProjectId": "proj-88012",
+        "Notes": "Completed and delivered"
+      },
+      "active_states": [
+        {
+          "TaskStateID": 11002,
+          "TaskID": 90044840403,
+          "ReportID": 44840403,
+          "StateID": 40,
+          "StateName": "Complete",
+          "StateExternalName": "Complete",
+          "Active": 1,
+          "StateTime": "2025-11-18T14:05:00",
+          "Description": "Task complete",
+          "UserID": "system",
+          "SiteID": 1,
+          "PreviousTaskStateID": 11001,
+          "PreferredUserID": null
+        }
+      ],
+      "state_history": [
+        {
+          "TaskStateID": 11002,
+          "TaskID": 90044840403,
+          "ReportID": 44840403,
+          "StateID": 40,
+          "StateName": "Complete",
+          "StateExternalName": "Complete",
+          "Active": 1,
+          "StateTime": "2025-11-18T14:05:00",
+          "Description": "Task complete",
+          "UserID": "system",
+          "SiteID": 1,
+          "PreviousTaskStateID": 11001,
+          "PreferredUserID": null
+        },
+        {
+          "TaskStateID": 11001,
+          "TaskID": 90044840403,
+          "ReportID": 44840403,
+          "StateID": 20,
+          "StateName": "InProduction",
+          "StateExternalName": "In Production",
+          "Active": 0,
+          "StateTime": "2025-11-17T09:12:00",
+          "Description": "QC",
+          "UserID": "ops",
+          "SiteID": 1,
+          "PreviousTaskStateID": null,
+          "PreferredUserID": null
+        }
+      ]
+    },
+    "72391747": {
+      "task": {
+        "TaskID": 90072391747,
+        "ReportID": 72391747,
+        "ProfileID": 66002,
+        "MasterProfileID": 66002,
+        "OrgNodeID": 145002,
+        "CompanyID": 220118,
+        "PrimaryProduct": "Claims Ready",
+        "DeliveryProduct": "Claims Ready",
+        "PriorityIndex": 2,
+        "DueDate": "2026-02-06T00:00:00",
+        "DueDateAdjusted": "2026-02-06T00:00:00",
+        "EvmDirectory": "evm/72391747",
+        "JobId": "job-72391747",
+        "ProjectId": "proj-145002",
+        "Notes": null
+      },
+      "active_states": [
+        {
+          "TaskStateID": 12002,
+          "TaskID": 90072391747,
+          "ReportID": 72391747,
+          "StateID": 40,
+          "StateName": "Complete",
+          "StateExternalName": "Complete",
+          "Active": 1,
+          "StateTime": "2026-02-06T11:40:00",
+          "Description": "Task complete",
+          "UserID": "system",
+          "SiteID": 1,
+          "PreviousTaskStateID": 12001,
+          "PreferredUserID": null
+        }
+      ],
+      "state_history": [
+        {
+          "TaskStateID": 12002,
+          "TaskID": 90072391747,
+          "ReportID": 72391747,
+          "StateID": 40,
+          "StateName": "Complete",
+          "StateExternalName": "Complete",
+          "Active": 1,
+          "StateTime": "2026-02-06T11:40:00",
+          "Description": "Task complete",
+          "UserID": "system",
+          "SiteID": 1,
+          "PreviousTaskStateID": 12001,
+          "PreferredUserID": null
+        }
+      ]
+    },
+    "50110200": {
+      "task": {
+        "TaskID": 90050110200,
+        "ReportID": 50110200,
+        "ProfileID": 77003,
+        "MasterProfileID": 77003,
+        "OrgNodeID": 200101,
+        "CompanyID": 330201,
+        "PrimaryProduct": "Standard Measurement",
+        "DeliveryProduct": "Standard Measurement",
+        "PriorityIndex": 1,
+        "DueDate": "2026-03-14T00:00:00",
+        "DueDateAdjusted": "2026-03-14T00:00:00",
+        "EvmDirectory": "evm/50110200",
+        "JobId": "job-50110200",
+        "ProjectId": "proj-200101",
+        "Notes": "Stuck waiting in workflow"
+      },
+      "active_states": [
+        {
+          "TaskStateID": 13001,
+          "TaskID": 90050110200,
+          "ReportID": 50110200,
+          "StateID": 25,
+          "StateName": "Waiting",
+          "StateExternalName": "Waiting for measurement",
+          "Active": 1,
+          "StateTime": "2026-03-12T08:22:00",
+          "Description": "Waiting on measurement",
+          "UserID": "ops",
+          "SiteID": 1,
+          "PreviousTaskStateID": null,
+          "PreferredUserID": null
+        }
+      ],
+      "state_history": [
+        {
+          "TaskStateID": 13001,
+          "TaskID": 90050110200,
+          "ReportID": 50110200,
+          "StateID": 25,
+          "StateName": "Waiting",
+          "StateExternalName": "Waiting for measurement",
+          "Active": 1,
+          "StateTime": "2026-03-12T08:22:00",
+          "Description": "Waiting on measurement",
+          "UserID": "ops",
+          "SiteID": 1,
+          "PreviousTaskStateID": null,
+          "PreferredUserID": null
+        }
+      ]
+    },
+    "61220311": {
+      "task": {
+        "TaskID": 90061220311,
+        "ReportID": 61220311,
+        "ProfileID": 88004,
+        "MasterProfileID": 88004,
+        "OrgNodeID": 310202,
+        "CompanyID": 440312,
+        "PrimaryProduct": "Walls Report",
+        "DeliveryProduct": "Walls Report",
+        "PriorityIndex": 3,
+        "DueDate": "2026-04-05T00:00:00",
+        "DueDateAdjusted": "2026-04-05T00:00:00",
+        "EvmDirectory": "evm/61220311",
+        "JobId": "job-61220311",
+        "ProjectId": "proj-310202",
+        "Notes": "Production complete; delivery rules disabled"
+      },
+      "active_states": [
+        {
+          "TaskStateID": 14002,
+          "TaskID": 90061220311,
+          "ReportID": 61220311,
+          "StateID": 40,
+          "StateName": "Complete",
+          "StateExternalName": "Complete",
+          "Active": 1,
+          "StateTime": "2026-04-05T10:00:00",
+          "Description": "Task complete",
+          "UserID": "system",
+          "SiteID": 1,
+          "PreviousTaskStateID": 14001,
+          "PreferredUserID": null
+        }
+      ],
+      "state_history": [
+        {
+          "TaskStateID": 14002,
+          "TaskID": 90061220311,
+          "ReportID": 61220311,
+          "StateID": 40,
+          "StateName": "Complete",
+          "StateExternalName": "Complete",
+          "Active": 1,
+          "StateTime": "2026-04-05T10:00:00",
+          "Description": "Task complete",
+          "UserID": "system",
+          "SiteID": 1,
+          "PreviousTaskStateID": 14001,
+          "PreferredUserID": null
+        }
+      ]
+    }
+  },
   "catalogs": {
     "delivery_methods": [
       {"DeliveryMethodID": 1, "Name": "Email", "Description": "Email delivery"},

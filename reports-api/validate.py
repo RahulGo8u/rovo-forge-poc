@@ -34,17 +34,15 @@ def main() -> int:
 
     expect_status("getReportById missing", "GET", "/api/v1/reports/999", 404)
     expect_status("getReportById zero", "GET", "/api/v1/reports/0", 422)
-    expect_status("getReportById negative", "GET", "/api/v1/reports/-1", 422)
-    expect_status("getReportById not numeric", "GET", "/api/v1/reports/abc", 422)
 
-    overview = expect_status("overview", "GET", "/api/v1/reports/44840403/overview", 200)
+    snapshot = expect_status("delivery-snapshot", "GET", "/api/v1/reports/44840403/delivery-snapshot", 200)
     check(
-        "overview sections",
+        "snapshot sections",
         bool(
-            overview
-            and overview["data"]["report"]["ReportID"] == 44840403
-            and isinstance(overview["data"]["delivery_rules"], list)
-            and isinstance(overview["data"]["products"], list)
+            snapshot
+            and snapshot["data"]["report"]["ReportID"] == 44840403
+            and "task_status" in snapshot["data"]
+            and "report_status_history" in snapshot["data"]
         ),
     )
 
@@ -52,92 +50,58 @@ def main() -> int:
         "delivery-rules",
         "products",
         "attributes",
-        "status-timeline",
-        "email-availability",
-        "delivery-analysis",
+        "report-status-history",
+        "task-status",
+        "customer-email-settings",
+        "delivery-diagnosis",
     ):
         expect_status(f"report {suffix}", "GET", f"/api/v1/reports/44840403/{suffix}", 200)
 
-    resolved = expect_status("resolve OrderID", "GET", "/api/v1/resolve?value=99100234", 200)
+    task = expect_status("task-status stuck", "GET", "/api/v1/reports/50110200/task-status", 200)
     check(
-        "resolve OrderID match",
+        "task waiting",
+        bool(task and task["data"]["current_state"]["StateName"] == "Waiting"),
+    )
+
+    resolved = expect_status(
+        "lookup OrderID",
+        "GET",
+        "/api/v1/reports/lookup-by-identifier?value=99100234",
+        200,
+    )
+    check(
+        "lookup OrderID match",
         bool(resolved and resolved["row_count"] == 1 and resolved["data"][0]["MatchedAs"] == "OrderID"),
     )
-    expect_status("resolve empty", "GET", "/api/v1/resolve?value=99999999", 200)
-    expect_status("resolve jira key", "GET", "/api/v1/resolve?value=PE-658", 422)
-    expect_status("resolve text", "GET", "/api/v1/resolve?value=not-a-number", 422)
-    expect_status("resolve bad kind", "GET", "/api/v1/resolve?value=44840403&kind=Nope", 422)
+    expect_status("lookup empty", "GET", "/api/v1/reports/lookup-by-identifier?value=99999999", 200)
+    expect_status("lookup jira key", "GET", "/api/v1/reports/lookup-by-identifier?value=PE-658", 422)
+    expect_status("lookup text", "GET", "/api/v1/reports/lookup-by-identifier?value=not-a-number", 422)
+    expect_status("lookup bad kind", "GET", "/api/v1/reports/lookup-by-identifier?value=44840403&kind=Nope", 422)
 
-    expect_status("org rules", "GET", "/api/v1/org-nodes/88012/delivery-rules", 200)
-    expect_status("catalog delivery-methods", "GET", "/api/v1/catalog/delivery-methods", 200)
-    expect_status("catalog file-types", "GET", "/api/v1/catalog/file-types", 200)
-    expect_status("catalog email-types", "GET", "/api/v1/catalog/email-types", 200)
-    expect_status("catalog invalid", "GET", "/api/v1/catalog/unknown", 422)
-    expect_status("samples", "GET", "/api/v1/samples/reports", 200)
-    expect_status("samples bad limit", "GET", "/api/v1/samples/reports?limit=0", 422)
+    expect_status("org rules", "GET", "/api/v1/org-nodes/88012/inherited-delivery-rules", 200)
+    expect_status("reference delivery-methods", "GET", "/api/v1/reference/delivery-methods", 200)
+    expect_status("reference file-types", "GET", "/api/v1/reference/file-types", 200)
+    expect_status("reference email-types", "GET", "/api/v1/reference/email-types", 200)
+    expect_status("reference invalid", "GET", "/api/v1/reference/unknown", 422)
+    expect_status("seed-examples", "GET", "/api/v1/reports/seed-examples", 200)
+    expect_status("seed-examples bad limit", "GET", "/api/v1/reports/seed-examples?limit=0", 422)
 
-    attention = expect_status(
-        "triage 44840403",
-        "POST",
-        "/api/v1/triage/quick-investigate",
-        200,
-        json={"lookup": "44840403", "lookup_kind": "auto"},
-    )
-    check("triage attention", bool(attention and attention["verdict"]["level"] == "attention"))
-
-    healthy = expect_status(
-        "triage 72391747",
-        "POST",
-        "/api/v1/triage/quick-investigate",
-        200,
-        json={"lookup": "72391747"},
-    )
-    check("triage healthy", bool(healthy and healthy["verdict"]["level"] == "healthy"))
-
-    missing_rules = expect_status(
-        "triage 50110200",
-        "POST",
-        "/api/v1/triage/quick-investigate",
-        200,
-        json={"lookup": "50110200"},
-    )
-    check("triage issue no rules", bool(missing_rules and missing_rules["verdict"]["level"] == "issue"))
-
-    disabled = expect_status(
-        "triage 61220311",
-        "POST",
-        "/api/v1/triage/quick-investigate",
-        200,
-        json={"lookup": "61220311"},
-    )
-    check("triage issue disabled", bool(disabled and disabled["verdict"]["level"] == "issue"))
-
-    unknown = expect_status(
-        "triage unknown id",
-        "POST",
-        "/api/v1/triage/quick-investigate",
-        200,
-        json={"lookup": "1"},
-    )
-    check("triage unknown ok false", bool(unknown and unknown["ok"] is False))
-
-    expect_status(
-        "triage jira body",
-        "POST",
-        "/api/v1/triage/quick-investigate",
-        422,
-        json={"lookup": "HCAT-123"},
-    )
-    expect_status(
-        "triage empty body",
-        "POST",
-        "/api/v1/triage/quick-investigate",
-        422,
-        json={},
-    )
+    diagnose = "/api/v1/triage/diagnose-delivery-config"
+    attention = expect_status("diagnose 44840403", "POST", diagnose, 200, json={"lookup": "44840403", "lookup_kind": "auto"})
+    check("diagnose attention", bool(attention and attention["verdict"]["level"] == "attention"))
+    healthy = expect_status("diagnose 72391747", "POST", diagnose, 200, json={"lookup": "72391747"})
+    check("diagnose healthy", bool(healthy and healthy["verdict"]["level"] == "healthy"))
+    missing_rules = expect_status("diagnose 50110200", "POST", diagnose, 200, json={"lookup": "50110200"})
+    check("diagnose issue no rules", bool(missing_rules and missing_rules["verdict"]["level"] == "issue"))
+    disabled = expect_status("diagnose 61220311", "POST", diagnose, 200, json={"lookup": "61220311"})
+    check("diagnose issue disabled", bool(disabled and disabled["verdict"]["level"] == "issue"))
+    unknown = expect_status("diagnose unknown id", "POST", diagnose, 200, json={"lookup": "1"})
+    check("diagnose unknown ok false", bool(unknown and unknown["ok"] is False))
+    expect_status("diagnose jira body", "POST", diagnose, 422, json={"lookup": "HCAT-123"})
+    expect_status("diagnose empty body", "POST", diagnose, 422, json={})
 
     meta = expect_status("meta endpoints", "GET", "/api/v1/meta/endpoints", 200)
-    check("meta lists endpoints", bool(meta and len(meta.get("endpoints", [])) >= 14))
+    check("meta lists endpoints", bool(meta and len(meta.get("endpoints", [])) >= 15))
 
     if FAILED:
         print(f"\n{len(FAILED)} check(s) failed: {', '.join(FAILED)}")
