@@ -2,7 +2,14 @@
 
 PoC HTTP API for the **Triage Agent**: look up a report by ID and inspect **delivery configuration**, **report status**, and **operations task status**.
 
-Data is **seeded** (`data/seed.json`). There is no SQL connection. No auth.
+Auth is **API key** (first step). Send header `X-API-Key` on every `/api/v1` call. `/health` stays public for Render. Never commit the real key; set `API_SECRET_KEY` in Render env / local `.env`.
+
+```http
+GET /api/v1/reports/44840403
+X-API-Key: <your-secret>
+```
+
+Also accepted: `Authorization: Bearer <your-secret>`. Missing/wrong key → **401**.
 
 | | |
 | --- | --- |
@@ -11,7 +18,7 @@ Data is **seeded** (`data/seed.json`). There is no SQL connection. No auth.
 | **Health** | https://reports-api-4aux.onrender.com/health |
 | **Endpoint catalog** | https://reports-api-4aux.onrender.com/api/v1/meta/endpoints |
 | **Dashboard** | https://dashboard.render.com/web/srv-da5js3bncjis7395oes0 |
-| **Repo** | https://github.com/RahulGo8u/rovo-forge-poc |
+| **Auth** | Header `X-API-Key` on all `/api/v1` routes. `/health` is public. |
 
 ---
 
@@ -84,12 +91,13 @@ Verdict levels: `issue` | `attention` | `healthy` | `info`.
 
 ```powershell
 $base = "https://reports-api-4aux.onrender.com"
+$key = $env:API_SECRET_KEY   # do not paste secrets into git
 
-Invoke-RestMethod "$base/api/v1/reports/44840403"
-Invoke-RestMethod "$base/api/v1/reports/lookup-by-identifier?value=99100234"
-Invoke-RestMethod "$base/api/v1/reports/50110200/task-status"
-Invoke-RestMethod "$base/api/v1/reports/44840403/delivery-diagnosis"
+Invoke-RestMethod "$base/api/v1/reports/44840403" -Headers @{ "X-API-Key" = $key }
+Invoke-RestMethod "$base/api/v1/reports/lookup-by-identifier?value=99100234" -Headers @{ "X-API-Key" = $key }
+Invoke-RestMethod "$base/api/v1/reports/50110200/task-status" -Headers @{ "X-API-Key" = $key }
 Invoke-RestMethod -Method Post "$base/api/v1/triage/diagnose-delivery-config" `
+  -Headers @{ "X-API-Key" = $key } `
   -ContentType "application/json" `
   -Body '{"lookup":"50110200","lookup_kind":"auto"}'
 ```
@@ -99,6 +107,8 @@ Invoke-RestMethod -Method Post "$base/api/v1/triage/diagnose-delivery-config" `
 ## Local run
 
 ```powershell
+copy .env.example .env
+# Set API_SECRET_KEY in .env to a long random value
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 10000
@@ -113,7 +123,10 @@ python -m venv .venv
 - Root directory: `reports-api`  
 - Build: `pip install -r requirements.txt`  
 - Start: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`  
-- Health: `/health`  
+- Health: `/health` (no API key)  
+- Secret: `API_SECRET_KEY` (Render dashboard / env, `sync: false` in `render.yaml`)  
+
+In Swagger (`/docs`), click **Authorize** and paste the key into `X-API-Key`.  
 
 Free instances may sleep when idle.
 

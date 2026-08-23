@@ -14,3 +14,5 @@ services:
         value: reports-api
       - key: API_PREFIX
         value: /api/v1
+      - key: API_SECRET_KEY
+        sync: false
