@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: reports-api
+    runtime: python
+    plan: free
+    rootDir: reports-api
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: APP_NAME
+        value: reports-api
+      - key: API_PREFIX
+        value: /api/v1

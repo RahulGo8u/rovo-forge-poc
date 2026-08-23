@@ -1,0 +1,327 @@
+{
+  "reports": [
+    {
+      "ReportID": 44840403,
+      "CustomerID": 120045,
+      "OrgNodeID": 88012,
+      "OrderID": 99100234,
+      "ProfileID": 55001,
+      "OrderPlacedDate": "2025-11-14T10:22:00",
+      "ProjectedDeliveryDate": "2025-11-18T00:00:00",
+      "SLADeliveryDate": "2025-11-19T00:00:00",
+      "City": "Columbus",
+      "State": "OH",
+      "Zip": "43215",
+      "ApplicationSourceId": 2
+    },
+    {
+      "ReportID": 72391747,
+      "CustomerID": 220118,
+      "OrgNodeID": 145002,
+      "OrderID": 100334455,
+      "ProfileID": 66002,
+      "OrderPlacedDate": "2026-02-02T08:15:00",
+      "ProjectedDeliveryDate": "2026-02-06T00:00:00",
+      "SLADeliveryDate": "2026-02-07T00:00:00",
+      "City": "Austin",
+      "State": "TX",
+      "Zip": "78701",
+      "ApplicationSourceId": 1
+    },
+    {
+      "ReportID": 50110200,
+      "CustomerID": 330201,
+      "OrgNodeID": 200101,
+      "OrderID": 110445566,
+      "ProfileID": 77003,
+      "OrderPlacedDate": "2026-03-10T09:00:00",
+      "ProjectedDeliveryDate": "2026-03-14T00:00:00",
+      "SLADeliveryDate": "2026-03-15T00:00:00",
+      "City": "Denver",
+      "State": "CO",
+      "Zip": "80202",
+      "ApplicationSourceId": 3
+    },
+    {
+      "ReportID": 61220311,
+      "CustomerID": 440312,
+      "OrgNodeID": 310202,
+      "OrderID": 120556677,
+      "ProfileID": 88004,
+      "OrderPlacedDate": "2026-04-01T16:40:00",
+      "ProjectedDeliveryDate": "2026-04-05T00:00:00",
+      "SLADeliveryDate": "2026-04-06T00:00:00",
+      "City": "Seattle",
+      "State": "WA",
+      "Zip": "98101",
+      "ApplicationSourceId": 2
+    }
+  ],
+  "delivery_rules": {
+    "44840403": [
+      {
+        "Id": 101,
+        "ReportID": 44840403,
+        "OrgNodeID": null,
+        "ProfileID": 55001,
+        "ProductID": 12,
+        "FileTypeID": 2,
+        "FileTypeGroupID": 1,
+        "DeliveryMethodID": 1,
+        "EmailTypeID": 3,
+        "Compress": 0,
+        "Disabled": 0,
+        "OverrideChildren": 0,
+        "FileFormats": "PDF",
+        "PartnerWebServiceID": null
+      },
+      {
+        "Id": 102,
+        "ReportID": 44840403,
+        "OrgNodeID": null,
+        "ProfileID": 55001,
+        "ProductID": 12,
+        "FileTypeID": 4,
+        "FileTypeGroupID": 2,
+        "DeliveryMethodID": 2,
+        "EmailTypeID": null,
+        "Compress": 1,
+        "Disabled": 1,
+        "OverrideChildren": 0,
+        "FileFormats": "DXF",
+        "PartnerWebServiceID": null
+      },
+      {
+        "Id": 103,
+        "ReportID": 44840403,
+        "OrgNodeID": null,
+        "ProfileID": 55001,
+        "ProductID": 12,
+        "FileTypeID": 7,
+        "FileTypeGroupID": 3,
+        "DeliveryMethodID": 1,
+        "EmailTypeID": 5,
+        "Compress": 0,
+        "Disabled": 0,
+        "OverrideChildren": 0,
+        "FileFormats": "XML",
+        "PartnerWebServiceID": null
+      }
+    ],
+    "72391747": [
+      {
+        "Id": 201,
+        "ReportID": 72391747,
+        "OrgNodeID": null,
+        "ProfileID": 66002,
+        "ProductID": 18,
+        "FileTypeID": 2,
+        "FileTypeGroupID": 1,
+        "DeliveryMethodID": 1,
+        "EmailTypeID": 3,
+        "Compress": 0,
+        "Disabled": 0,
+        "OverrideChildren": 0,
+        "FileFormats": "PDF",
+        "PartnerWebServiceID": null
+      },
+      {
+        "Id": 202,
+        "ReportID": 72391747,
+        "OrgNodeID": null,
+        "ProfileID": 66002,
+        "ProductID": 18,
+        "FileTypeID": 4,
+        "FileTypeGroupID": 2,
+        "DeliveryMethodID": 1,
+        "EmailTypeID": 3,
+        "Compress": 0,
+        "Disabled": 0,
+        "OverrideChildren": 0,
+        "FileFormats": "DXF",
+        "PartnerWebServiceID": null
+      }
+    ],
+    "50110200": [],
+    "61220311": [
+      {
+        "Id": 301,
+        "ReportID": 61220311,
+        "OrgNodeID": null,
+        "ProfileID": 88004,
+        "ProductID": 21,
+        "FileTypeID": 2,
+        "FileTypeGroupID": 1,
+        "DeliveryMethodID": 1,
+        "EmailTypeID": 3,
+        "Compress": 0,
+        "Disabled": 1,
+        "OverrideChildren": 0,
+        "FileFormats": "PDF",
+        "PartnerWebServiceID": null
+      }
+    ]
+  },
+  "products": {
+    "44840403": [
+      {
+        "ProductID": 12,
+        "ProductName": "Premium Roof Report",
+        "Abbreviation": "PRR",
+        "EffectiveDate": "2025-11-14T10:22:00",
+        "ExpiredDate": null
+      }
+    ],
+    "72391747": [
+      {
+        "ProductID": 18,
+        "ProductName": "Claims Ready",
+        "Abbreviation": "CR",
+        "EffectiveDate": "2026-02-02T08:15:00",
+        "ExpiredDate": null
+      }
+    ],
+    "50110200": [
+      {
+        "ProductID": 9,
+        "ProductName": "Standard Measurement",
+        "Abbreviation": "SM",
+        "EffectiveDate": "2026-03-10T09:00:00",
+        "ExpiredDate": null
+      }
+    ],
+    "61220311": [
+      {
+        "ProductID": 21,
+        "ProductName": "Walls Report",
+        "Abbreviation": "WR",
+        "EffectiveDate": "2026-04-01T16:40:00",
+        "ExpiredDate": null
+      }
+    ]
+  },
+  "attributes": {
+    "44840403": [{"AttributeID": 4, "AttributeName": "DeliveryChannel", "Value": "Email"}],
+    "72391747": [{"AttributeID": 4, "AttributeName": "DeliveryChannel", "Value": "Email"}],
+    "50110200": [{"AttributeID": 4, "AttributeName": "DeliveryChannel", "Value": "None"}],
+    "61220311": [{"AttributeID": 4, "AttributeName": "DeliveryChannel", "Value": "Email"}]
+  },
+  "status_timeline": {
+    "44840403": [
+      {
+        "StatusTimeStamp": "2025-11-18T14:05:00",
+        "Status": "Delivered",
+        "SubStatus": "Complete",
+        "ChangedBy": "system@eagleview.com"
+      },
+      {
+        "StatusTimeStamp": "2025-11-17T09:12:00",
+        "Status": "In Production",
+        "SubStatus": "QC",
+        "ChangedBy": "ops@eagleview.com"
+      }
+    ],
+    "72391747": [
+      {
+        "StatusTimeStamp": "2026-02-06T11:40:00",
+        "Status": "Delivered",
+        "SubStatus": "Complete",
+        "ChangedBy": "system@eagleview.com"
+      }
+    ],
+    "50110200": [
+      {
+        "StatusTimeStamp": "2026-03-12T08:22:00",
+        "Status": "In Production",
+        "SubStatus": "Waiting",
+        "ChangedBy": "ops@eagleview.com"
+      }
+    ],
+    "61220311": [
+      {
+        "StatusTimeStamp": "2026-04-05T10:00:00",
+        "Status": "Delivered",
+        "SubStatus": "Complete",
+        "ChangedBy": "system@eagleview.com"
+      }
+    ]
+  },
+  "email_availability": {
+    "88012": [
+      {
+        "Id": 9001,
+        "OrgNodeId": 88012,
+        "ProfileId": 55001,
+        "ProductId": 12,
+        "EmailTypeId": 3,
+        "EmailTypeName": "Delivery Notification",
+        "IsEnabled": true,
+        "OverrideChildren": false
+      }
+    ],
+    "145002": [
+      {
+        "Id": 9002,
+        "OrgNodeId": 145002,
+        "ProfileId": 66002,
+        "ProductId": 18,
+        "EmailTypeId": 3,
+        "EmailTypeName": "Delivery Notification",
+        "IsEnabled": true,
+        "OverrideChildren": false
+      }
+    ],
+    "200101": [],
+    "310202": [
+      {
+        "Id": 9003,
+        "OrgNodeId": 310202,
+        "ProfileId": 88004,
+        "ProductId": 21,
+        "EmailTypeId": 3,
+        "EmailTypeName": "Delivery Notification",
+        "IsEnabled": false,
+        "OverrideChildren": false
+      }
+    ]
+  },
+  "org_rules": {
+    "88012": [
+      {
+        "Id": 501,
+        "ReportID": null,
+        "OrgNodeID": 88012,
+        "ProfileID": null,
+        "ProductID": 12,
+        "FileTypeID": 2,
+        "FileTypeGroupID": 1,
+        "DeliveryMethodID": 1,
+        "EmailTypeID": 3,
+        "Compress": 0,
+        "Disabled": 0,
+        "OverrideChildren": 1,
+        "FileFormats": "PDF",
+        "PartnerWebServiceID": null
+      }
+    ],
+    "145002": [],
+    "200101": [],
+    "310202": []
+  },
+  "catalogs": {
+    "delivery_methods": [
+      {"DeliveryMethodID": 1, "Name": "Email", "Description": "Email delivery"},
+      {"DeliveryMethodID": 2, "Name": "FTP", "Description": "FTP push"},
+      {"DeliveryMethodID": 3, "Name": "Partner Web Service", "Description": "Partner WS"}
+    ],
+    "file_types": [
+      {"FileTypeID": 2, "Name": "Invoice", "Description": "Invoice PDF"},
+      {"FileTypeID": 4, "Name": "Neighborhood", "Description": "Neighborhood / DXF"},
+      {"FileTypeID": 7, "Name": "XML Export", "Description": "Structured XML"}
+    ],
+    "email_types": [
+      {"EmailTypeID": 3, "EmailTypeName": "Delivery Notification", "Description": "Customer delivery email"},
+      {"EmailTypeID": 5, "EmailTypeName": "Invoice", "Description": "Invoice email"}
+    ]
+  }
+}
