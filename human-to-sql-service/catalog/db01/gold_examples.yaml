@@ -1,0 +1,32 @@
+version: 1
+node: db01
+database: DB7222
+examples:
+  - intent: report-status-timeline
+    questions:
+      - What is the current report status?
+      - Show the report status timeline and substatus history.
+      - Is this report still processing or already sent?
+    request: {report_id: 45036187}
+  - intent: report-file-delivery-rules
+    questions:
+      - Show effective report, profile, and organization delivery rule candidates.
+      - Customer did not receive the DXF; inspect inherited delivery configuration.
+    request: {report_id: 45036187}
+  - intent: customer-email-notification-settings
+    questions:
+      - Are email notifications enabled for this report profile or organization?
+    request: {report_id: 45036187}
+  - intent: report-property-address
+    questions:
+      - What is the property street, city, state, and zip?
+    request: {order_id: 43476401}
+  - intent: report-ordered-products
+    questions:
+      - Which products or SKUs were ordered for this report?
+      - What products were billed on this order?
+    request: {report_id: 45036187}
+  - intent: report-header
+    questions:
+      - Find the report header and order association.
+    request: {report_id: 45036187}

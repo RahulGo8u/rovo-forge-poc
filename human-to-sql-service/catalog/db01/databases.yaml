@@ -1,0 +1,51 @@
+version: 1
+environment: test
+node: db01
+server_env: SQLSERVER_DB01_HOST
+default_server: DB01NODE1
+inventory: all_accessible_online_user_databases
+defaults:
+  catalog_enabled: true
+  searchable: true
+  query_enabled: false
+  definitions: evidence_only
+exclude_from_query_patterns:
+  - '(?i)(^|_)(old|bak|backup|temp|testing)($|_)'
+databases:
+  aspnet_membership: {domain: identity-legacy}
+  ASPState: {domain: session-state}
+  Boss: {domain: unknown}
+  Construct: {domain: unknown}
+  DB7222:
+    domain: reports-orders-delivery
+    query_enabled: true
+    templates_enabled: true
+    anchor_objects:
+      - dbo.Report
+  DB7222_old: {domain: reports-archive}
+  DNN_Testing: {domain: portal-testing}
+  DocGenDB: {domain: document-generation}
+  DotNetNuke: {domain: portal}
+  EDB21441: {domain: supplier}
+  EDB2409: {domain: supplier}
+  EDB3072: {domain: supplier}
+  EDB34273: {domain: supplier}
+  EDB3564: {domain: supplier}
+  EDB7843: {domain: supplier}
+  EmailTemplateDB_Testing: {domain: email-templates}
+  EVFiles: {domain: files}
+  Logging: {domain: logging}
+  ObjectStorage: {domain: object-storage}
+  Operations:
+    domain: operations
+    query_enabled: false
+    note: Operations is expected on db02; keep disabled here if present.
+  supplierabc: {domain: supplier}
+  supplierabcbak: {domain: supplier-archive}
+  SupplierAllied: {domain: supplier}
+  suppliersrs: {domain: supplier}
+  TempDB7222: {domain: reports-temp}
+  TempDB7222_old: {domain: reports-temp-archive}
+  test: {domain: unknown}
+  Test_table: {domain: unknown}
+  XopMockData: {domain: mock-data}

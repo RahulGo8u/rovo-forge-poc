@@ -1,0 +1,150 @@
+{
+  "customers": {
+    "120045": {
+      "CustomerID": 120045,
+      "Name": "Columbus Premium Roofing",
+      "City": "Columbus",
+      "State": "OH",
+      "Status": "Active",
+      "DefaultOrgNodeID": 88012,
+      "DefaultProfileID": 55001
+    },
+    "220118": {
+      "CustomerID": 220118,
+      "Name": "Austin Claims Partners",
+      "City": "Austin",
+      "State": "TX",
+      "Status": "Active",
+      "DefaultOrgNodeID": 145002,
+      "DefaultProfileID": 66002
+    },
+    "330201": {
+      "CustomerID": 330201,
+      "Name": "Denver Measure Co",
+      "City": "Denver",
+      "State": "CO",
+      "Status": "Active",
+      "DefaultOrgNodeID": 200101,
+      "DefaultProfileID": 77003
+    },
+    "440312": {
+      "CustomerID": 440312,
+      "Name": "Seattle Walls LLC",
+      "City": "Seattle",
+      "State": "WA",
+      "Status": "Active",
+      "DefaultOrgNodeID": 310202,
+      "DefaultProfileID": 88004
+    }
+  },
+  "org_nodes": {
+    "88012": {"OrgNodeID": 88012, "Name": "Columbus HQ", "CustomerID": 120045, "ParentOrgNodeID": null},
+    "145002": {"OrgNodeID": 145002, "Name": "Austin Branch", "CustomerID": 220118, "ParentOrgNodeID": null},
+    "200101": {"OrgNodeID": 200101, "Name": "Denver Branch", "CustomerID": 330201, "ParentOrgNodeID": null},
+    "310202": {"OrgNodeID": 310202, "Name": "Seattle Branch", "CustomerID": 440312, "ParentOrgNodeID": null}
+  },
+  "profiles": {
+    "55001": {
+      "ProfileId": 55001,
+      "UserId": "user-55001",
+      "DefaultOrgNodeID": 88012,
+      "CustomerID": 120045,
+      "ReceiveCommunications": true,
+      "Receive3rdPartyCommunications": false,
+      "RecipientEmail": "delivery@columbuspremium.example"
+    },
+    "66002": {
+      "ProfileId": 66002,
+      "UserId": "user-66002",
+      "DefaultOrgNodeID": 145002,
+      "CustomerID": 220118,
+      "ReceiveCommunications": true,
+      "Receive3rdPartyCommunications": true,
+      "RecipientEmail": "ops@austinclaims.example"
+    },
+    "77003": {
+      "ProfileId": 77003,
+      "UserId": "user-77003",
+      "DefaultOrgNodeID": 200101,
+      "CustomerID": 330201,
+      "ReceiveCommunications": true,
+      "Receive3rdPartyCommunications": false,
+      "RecipientEmail": "orders@denvermeasure.example"
+    },
+    "88004": {
+      "ProfileId": 88004,
+      "UserId": "user-88004",
+      "DefaultOrgNodeID": 310202,
+      "CustomerID": 440312,
+      "ReceiveCommunications": false,
+      "Receive3rdPartyCommunications": false,
+      "RecipientEmail": "closed@seattlewalls.example"
+    }
+  },
+  "related_reports": {
+    "44840403": [{"ReportID": 44840403, "RelatedReportID": 72391747, "PMReportId": null, "Relation": "SimilarDeliveryPattern"}],
+    "72391747": [{"ReportID": 72391747, "RelatedReportID": 44840403, "PMReportId": null, "Relation": "SimilarDeliveryPattern"}],
+    "50110200": [],
+    "61220311": []
+  },
+  "images": {
+    "44840403": [
+      {"ID": 8001, "ReportId": 44840403, "ReportFileId": 9001, "FileTypeId": 2, "FileFormatId": 1, "ImageProviderId": 1, "ImageUsageId": 1, "ImageDate": "2025-11-14", "ImageResolution": "High", "IsDeleted": false}
+    ],
+    "72391747": [
+      {"ID": 8002, "ReportId": 72391747, "ReportFileId": 9002, "FileTypeId": 4, "FileFormatId": 2, "ImageProviderId": 1, "ImageUsageId": 2, "ImageDate": "2026-02-02", "ImageResolution": "High", "IsDeleted": false}
+    ],
+    "50110200": [],
+    "61220311": [
+      {"ID": 8003, "ReportId": 61220311, "ReportFileId": 9003, "FileTypeId": 2, "FileFormatId": 1, "ImageProviderId": 1, "ImageUsageId": 1, "ImageDate": "2026-04-01", "ImageResolution": "Med", "IsDeleted": false}
+    ]
+  },
+  "application_sources": {
+    "44840403": {"ReportID": 44840403, "ApplicationSourceId": 2, "ApplicationSourceName": "Extranet", "Abbreviation": "EXT", "PartnerWebServiceId": null, "SourceId": 2, "SwapOnDuplicate": false},
+    "72391747": {"ReportID": 72391747, "ApplicationSourceId": 1, "ApplicationSourceName": "Partner WS", "Abbreviation": "PWS", "PartnerWebServiceId": 11, "SourceId": 1, "SwapOnDuplicate": false},
+    "50110200": {"ReportID": 50110200, "ApplicationSourceId": 3, "ApplicationSourceName": "BOSS", "Abbreviation": "BOSS", "PartnerWebServiceId": null, "SourceId": 3, "SwapOnDuplicate": false},
+    "61220311": {"ReportID": 61220311, "ApplicationSourceId": 2, "ApplicationSourceName": "Extranet", "Abbreviation": "EXT", "PartnerWebServiceId": null, "SourceId": 2, "SwapOnDuplicate": false}
+  },
+  "product_capabilities": {
+    "44840403": [{"ReportID": 44840403, "ProductID": 12, "ProductName": "Premium Roof Report", "Abbreviation": "PRR", "CanGenerateDXF": true, "CanGenerateXML": true, "CanGenerateRXF": false, "ProductActive": true}],
+    "72391747": [{"ReportID": 72391747, "ProductID": 18, "ProductName": "Claims Ready", "Abbreviation": "CR", "CanGenerateDXF": true, "CanGenerateXML": false, "CanGenerateRXF": false, "ProductActive": true}],
+    "50110200": [{"ReportID": 50110200, "ProductID": 9, "ProductName": "Standard Measurement", "Abbreviation": "SM", "CanGenerateDXF": false, "CanGenerateXML": false, "CanGenerateRXF": false, "ProductActive": true}],
+    "61220311": [{"ReportID": 61220311, "ProductID": 21, "ProductName": "Walls Report", "Abbreviation": "WR", "CanGenerateDXF": true, "CanGenerateXML": false, "CanGenerateRXF": false, "ProductActive": true}]
+  },
+  "deliverable_verification": {
+    "44840403": [{"DeliverableVerificationRuleId": 1, "ProfileId": 55001, "ApplicationSourceId": 2, "ProductId": 12, "ReportId": 44840403, "Active": true, "PreferredUser": null}],
+    "72391747": [{"DeliverableVerificationRuleId": 2, "ProfileId": 66002, "ApplicationSourceId": 1, "ProductId": 18, "ReportId": 72391747, "Active": true, "PreferredUser": null}],
+    "50110200": [],
+    "61220311": [{"DeliverableVerificationRuleId": 3, "ProfileId": 88004, "ApplicationSourceId": 2, "ProductId": 21, "ReportId": 61220311, "Active": false, "PreferredUser": null}]
+  },
+  "addresses": {
+    "44840403": {"ReportAddressID": 44840403, "ReportID": 44840403, "Address": "100 High St", "Address2": null, "City": "Columbus", "State": "OH", "Zip": "43215", "Country": "US", "Latitude": 39.9612, "Longitude": -82.9988, "County": "Franklin"},
+    "72391747": {"ReportAddressID": 72391747, "ReportID": 72391747, "Address": "500 Congress Ave", "Address2": "Ste 200", "City": "Austin", "State": "TX", "Zip": "78701", "Country": "US", "Latitude": 30.2672, "Longitude": -97.7431, "County": "Travis"},
+    "50110200": {"ReportAddressID": 50110200, "ReportID": 50110200, "Address": "1700 Broadway", "Address2": null, "City": "Denver", "State": "CO", "Zip": "80202", "Country": "US", "Latitude": 39.7392, "Longitude": -104.9903, "County": "Denver"},
+    "61220311": {"ReportAddressID": 61220311, "ReportID": 61220311, "Address": "701 5th Ave", "Address2": null, "City": "Seattle", "State": "WA", "Zip": "98101", "Country": "US", "Latitude": 47.6062, "Longitude": -122.3321, "County": "King"}
+  },
+  "report_details": {
+    "44840403": {"ReportDetailID": 44840403, "ReportID": 44840403, "Facets": 18, "Segments": 24, "TotalArea": 2450.5, "PrimaryPitch": 6, "SteepestPitch": 8, "LengthRidge": 42.0, "LengthValley": 18.5, "LengthEave": 86.0, "LengthRake": 52.0, "LengthHip": 12, "TotalWallArea": 0, "WallFacets": 0},
+    "72391747": {"ReportDetailID": 72391747, "ReportID": 72391747, "Facets": 12, "Segments": 16, "TotalArea": 1800.0, "PrimaryPitch": 4, "SteepestPitch": 6, "LengthRidge": 30.0, "LengthValley": 10.0, "LengthEave": 70.0, "LengthRake": 40.0, "LengthHip": 8, "TotalWallArea": 0, "WallFacets": 0},
+    "50110200": {"ReportDetailID": 50110200, "ReportID": 50110200, "Facets": 8, "Segments": 10, "TotalArea": 1200.0, "PrimaryPitch": 5, "SteepestPitch": 5, "LengthRidge": 22.0, "LengthValley": 6.0, "LengthEave": 48.0, "LengthRake": 28.0, "LengthHip": 4, "TotalWallArea": 0, "WallFacets": 0},
+    "61220311": {"ReportDetailID": 61220311, "ReportID": 61220311, "Facets": 22, "Segments": 30, "TotalArea": 0, "PrimaryPitch": 0, "SteepestPitch": 0, "LengthRidge": 0, "LengthValley": 0, "LengthEave": 0, "LengthRake": 0, "LengthHip": 0, "TotalWallArea": 2100.0, "WallFacets": 14}
+  },
+  "associations": {
+    "44840403": [{"ReportAssociationID": 1, "ReportID": 44840403, "ProfileID": 55001, "OrgNodeID": 88012, "ReportAssociationTypeID": 1}],
+    "72391747": [{"ReportAssociationID": 2, "ReportID": 72391747, "ProfileID": 66002, "OrgNodeID": 145002, "ReportAssociationTypeID": 1}],
+    "50110200": [{"ReportAssociationID": 3, "ReportID": 50110200, "ProfileID": 77003, "OrgNodeID": 200101, "ReportAssociationTypeID": 1}],
+    "61220311": [{"ReportAssociationID": 4, "ReportID": 61220311, "ProfileID": 88004, "OrgNodeID": 310202, "ReportAssociationTypeID": 1}]
+  },
+  "measurements": {
+    "44840403": [{"ReportMeasurementID": 1, "ReportID": 44840403, "MeasurementTypeID": 1, "Value": 2450.5}],
+    "72391747": [{"ReportMeasurementID": 2, "ReportID": 72391747, "MeasurementTypeID": 1, "Value": 1800.0}],
+    "50110200": [{"ReportMeasurementID": 3, "ReportID": 50110200, "MeasurementTypeID": 1, "Value": 1200.0}],
+    "61220311": [{"ReportMeasurementID": 4, "ReportID": 61220311, "MeasurementTypeID": 2, "Value": 2100.0}]
+  },
+  "invoice_status": {
+    "44840403": {"ReportID": 44840403, "StatusId": 2, "Name": "Invoiced"},
+    "72391747": {"ReportID": 72391747, "StatusId": 2, "Name": "Invoiced"},
+    "50110200": {"ReportID": 50110200, "StatusId": 1, "Name": "Pending"},
+    "61220311": {"ReportID": 61220311, "StatusId": 2, "Name": "Invoiced"}
+  }
+}

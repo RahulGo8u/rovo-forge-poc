@@ -1,0 +1,13 @@
+version: 1
+node: db02
+database: Operations
+business_terms:
+  operations_workflow:
+    preferred_objects: []
+    synonyms: [task, workflow, queue, task state, stuck operation]
+facts:
+  - id: evidence_only_until_capture
+    statement: Operations objects remain uncategorized until the first db02 catalog capture is reviewed.
+policies:
+  routines: evidence_only
+  cross_node_sql: forbidden

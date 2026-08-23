@@ -1,0 +1,20 @@
+version: 1
+environment: test
+node: db02
+server_env: SQLSERVER_DB02_HOST
+default_server: DB02NODE1
+inventory: all_accessible_online_user_databases
+defaults:
+  catalog_enabled: true
+  searchable: true
+  query_enabled: false
+  definitions: evidence_only
+exclude_from_query_patterns:
+  - '(?i)(^|_)(old|bak|backup|temp|testing)($|_)'
+databases:
+  Operations:
+    domain: operations-workflow
+    query_enabled: true
+    templates_enabled: false
+    anchor_objects: []
+    note: First db02 database to capture and review.

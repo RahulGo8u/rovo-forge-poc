@@ -73,7 +73,12 @@ def main() -> int:
     expect_status("getReportById missing", "GET", "/api/v1/reports/999", 404)
     expect_status("getReportById zero", "GET", "/api/v1/reports/0", 422)
 
-    snapshot = expect_status("delivery-snapshot", "GET", "/api/v1/reports/44840403/delivery-snapshot", 200)
+    snapshot = expect_status(
+        "delivery-configuration-snapshot",
+        "GET",
+        "/api/v1/reports/44840403/delivery-configuration-snapshot",
+        200,
+    )
     check(
         "snapshot sections",
         bool(
@@ -85,39 +90,124 @@ def main() -> int:
     )
 
     for suffix in (
-        "delivery-rules",
-        "products",
-        "attributes",
-        "report-status-history",
-        "task-status",
-        "customer-email-settings",
-        "delivery-diagnosis",
+        "current-status-with-history",
+        "status-change-history",
+        "operations-workflow-status",
+        "operations-workflow-task",
+        "operations-workflow-task-states",
+        "details-with-address-and-measurements",
+        "details-with-ordered-products",
+        "details-with-ordered-products-and-attributes",
+        "file-delivery-rules",
+        "delivery-configuration-diagnosis",
+        "customer-email-notification-settings",
+        "deliverable-verification-rules",
+        "product-file-generation-capabilities",
+        "ordered-products",
+        "report-attributes",
+        "property-address",
+        "measurement-values",
+        "source-imagery",
+        "profile-and-organization-associations",
+        "related-reports",
+        "ordering-application-source",
+        "invoice-status",
     ):
         expect_status(f"report {suffix}", "GET", f"/api/v1/reports/44840403/{suffix}", 200)
 
-    task = expect_status("task-status stuck", "GET", "/api/v1/reports/50110200/task-status", 200)
+    task = expect_status(
+        "operations-workflow-status stuck",
+        "GET",
+        "/api/v1/reports/50110200/operations-workflow-status",
+        200,
+    )
     check("task waiting", bool(task and task["data"]["current_state"]["StateName"] == "Waiting"))
 
-    resolved = expect_status("lookup OrderID", "GET", "/api/v1/reports/lookup-by-identifier?value=99100234", 200)
+    by_task = expect_status(
+        "workflow task by TaskID", "GET", "/api/v1/operations-workflow-tasks/90044840403", 200
+    )
+    check("task by id", bool(by_task and by_task["data"]["task"]["TaskID"] == 90044840403))
+    expect_status(
+        "workflow task states by TaskID",
+        "GET",
+        "/api/v1/operations-workflow-tasks/90044840403/task-states",
+        200,
+    )
+
+    for retired in (
+        "/api/v1/reports/44840403/report-detail-withproducts",
+        "/api/v1/reports/44840403/composition",
+        "/api/v1/reports/44840403/full-profile",
+        "/api/v1/reports/44840403/task-status",
+        "/api/v1/tasks/90044840403",
+        "/api/v1/org-nodes/88012",
+    ):
+        expect_status(f"retired path {retired}", "GET", retired, 404)
+
+    expect_status("customer", "GET", "/api/v1/customers/120045", 200)
+    expect_status("reports for customer", "GET", "/api/v1/customers/120045/reports", 200)
+    expect_status(
+        "customer email notification settings",
+        "GET",
+        "/api/v1/customers/120045/email-notification-settings",
+        200,
+    )
+    expect_status("organization node", "GET", "/api/v1/organization-nodes/88012", 200)
+    expect_status("reports for organization node", "GET", "/api/v1/organization-nodes/88012/reports", 200)
+    expect_status(
+        "inherited file delivery rules",
+        "GET",
+        "/api/v1/organization-nodes/88012/inherited-file-delivery-rules",
+        200,
+    )
+    expect_status("recipient profile", "GET", "/api/v1/recipient-profiles/55001", 200)
+    expect_status("reports for order", "GET", "/api/v1/orders/99100234/reports", 200)
+    expect_status("reference workflow-states", "GET", "/api/v1/reference-data/workflow-states", 200)
+    expect_status("reference file-types", "GET", "/api/v1/reference-data/file-types", 200)
+
+    find = "/api/v1/reports/find-by-identifier"
+    resolved = expect_status("find by OrderID", "GET", f"{find}?value=99100234", 200)
     check(
-        "lookup OrderID match",
+        "find by OrderID match",
         bool(resolved and resolved["row_count"] == 1 and resolved["data"][0]["MatchedAs"] == "OrderID"),
     )
-    expect_status("lookup empty", "GET", "/api/v1/reports/lookup-by-identifier?value=99999999", 200)
-    expect_status("lookup jira key", "GET", "/api/v1/reports/lookup-by-identifier?value=PE-658", 422)
+    expect_status("find no match", "GET", f"{find}?value=99999999", 200)
+    expect_status("find jira key", "GET", f"{find}?value=PE-658", 422)
+    expect_status("example reports in seed data", "GET", "/api/v1/reports/example-reports-in-seed-data", 200)
 
-    expect_status("org rules", "GET", "/api/v1/org-nodes/88012/inherited-delivery-rules", 200)
-    expect_status("reference file-types", "GET", "/api/v1/reference/file-types", 200)
-    expect_status("seed-examples", "GET", "/api/v1/reports/seed-examples", 200)
-
-    diagnose = "/api/v1/triage/diagnose-delivery-config"
+    diagnose = "/api/v1/triage/diagnose-delivery-configuration"
     attention = expect_status("diagnose 44840403", "POST", diagnose, 200, json={"lookup": "44840403", "lookup_kind": "auto"})
     check("diagnose attention", bool(attention and attention["verdict"]["level"] == "attention"))
     expect_status("diagnose jira body", "POST", diagnose, 422, json={"lookup": "HCAT-123"})
 
-    meta = expect_status("meta endpoints", "GET", "/api/v1/meta/endpoints", 200)
-    check("meta lists endpoints", bool(meta and len(meta.get("endpoints", [])) >= 15))
-    check("meta describes api_key", bool(meta and (meta.get("auth") or {}).get("type") == "api_key"))
+    catalog = expect_status("endpoint catalog", "GET", "/api/v1/metadata/endpoint-catalog", 200)
+    check("catalog lists endpoints", bool(catalog and len(catalog.get("endpoints", [])) >= 25))
+    check("catalog endpoint_count", bool(catalog and catalog.get("endpoint_count", 0) >= 25))
+    check(
+        "catalog describes api_key",
+        bool(catalog and (catalog.get("authentication") or {}).get("type") == "api_key"),
+    )
+    entry_points = (catalog or {}).get("triage_entry_points") or {}
+    check("triage entry points advertised", len(entry_points) >= 10)
+
+    from fastapi.routing import APIRoute
+
+    api_paths = sorted(
+        {
+            route.path
+            for route in app.routes
+            if isinstance(route, APIRoute) and route.path.startswith("/api/v1")
+        }
+    )
+    check("at least 25 api endpoints", len(api_paths) >= 25, str(len(api_paths)))
+
+    abbreviations = ("withproducts", "taskstates", "/org-", "/meta/", "/reference/")
+    offenders = [
+        path
+        for path in api_paths
+        if any(token in path for token in abbreviations) or path.endswith("-config")
+    ]
+    check("no abbreviated path segments", not offenders, ", ".join(offenders))
 
     if FAILED:
         print(f"\n{len(FAILED)} check(s) failed: {', '.join(FAILED)}")

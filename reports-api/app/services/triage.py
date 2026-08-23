@@ -18,7 +18,10 @@ def _analyze_delivery_rules(rules: list[dict[str, Any]]) -> tuple[TriageVerdict,
                 confidence=92,
             ),
             ["No rows in ReportFileDeliveryRule for this ReportID."],
-            ["Check org-node inherited rules.", "Confirm report reached delivery-ready status."],
+            [
+                "Check /organization-nodes/{org_node_id}/inherited-file-delivery-rules.",
+                "Check /reports/{report_id}/operations-workflow-status to confirm the report reached a delivery-ready state.",
+            ],
         )
 
     enabled = [r for r in rules if not r.get("Disabled")]
@@ -34,7 +37,10 @@ def _analyze_delivery_rules(rules: list[dict[str, Any]]) -> tuple[TriageVerdict,
                 confidence=95,
             ),
             findings,
-            ["Review why rules were disabled.", "Check org-node overrides."],
+            [
+                "Review why every rule was disabled.",
+                "Check /organization-nodes/{org_node_id}/inherited-file-delivery-rules for an OverrideChildren rule.",
+            ],
         )
 
     file_types = sorted({r.get("FileTypeID") for r in enabled if r.get("FileTypeID") is not None})
@@ -52,7 +58,10 @@ def _analyze_delivery_rules(rules: list[dict[str, Any]]) -> tuple[TriageVerdict,
                 confidence=88,
             ),
             findings,
-            ["Validate CustomerEmailAvailability.", "Check downstream mail pipeline if config looks correct."],
+            [
+                "Check /reports/{report_id}/customer-email-notification-settings.",
+                "If configuration looks correct, inspect the downstream mail pipeline.",
+            ],
         )
 
     if not dxf_rules:
@@ -64,7 +73,11 @@ def _analyze_delivery_rules(rules: list[dict[str, Any]]) -> tuple[TriageVerdict,
                 confidence=80,
             ),
             findings,
-            ["Confirm customer expected DXF.", "Inspect partner WS / FTP delivery if applicable."],
+            [
+                "Confirm the customer expected a DXF file.",
+                "Check /reports/{report_id}/product-file-generation-capabilities for CanGenerateDXF.",
+                "Inspect Partner Web Service or FTP delivery if either applies.",
+            ],
         )
 
     return (
@@ -93,7 +106,10 @@ def diagnose_delivery_config(repo: ReportsRepository, *, lookup: int, lookup_kin
                 confidence=90,
             ),
             findings=["Identifier did not resolve to any report."],
-            next_checks=["Verify ReportID/OrderID/CustomerID/OrgNodeID/ProfileID.", "Use /reports/seed-examples for seeded IDs."],
+            next_checks=[
+                "Verify the ReportID, OrderID, CustomerID, OrgNodeID, or ProfileID.",
+                "Call /reports/example-reports-in-seed-data for identifiers that exist in this service.",
+            ],
         )
 
     top = candidates[0]

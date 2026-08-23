@@ -551,6 +551,11 @@
     "email_types": [
       {"EmailTypeID": 3, "EmailTypeName": "Delivery Notification", "Description": "Customer delivery email"},
       {"EmailTypeID": 5, "EmailTypeName": "Invoice", "Description": "Invoice email"}
+    ],
+    "workflow_states": [
+      {"StateID": 20, "Name": "InProduction", "ExternalName": "In Production", "Active": true, "AllowManualOverride": true, "DisplayOrder": 20},
+      {"StateID": 25, "Name": "Waiting", "ExternalName": "Waiting for measurement", "Active": true, "AllowManualOverride": true, "DisplayOrder": 25},
+      {"StateID": 40, "Name": "Complete", "ExternalName": "Complete", "Active": true, "AllowManualOverride": false, "DisplayOrder": 40}
     ]
   }
 }

@@ -1,0 +1,29 @@
+version: 1
+node: db01
+database: DB7222
+business_terms:
+  report:
+    preferred_objects: [dbo.Report]
+    synonyms: [job, measurement report]
+  report_status:
+    preferred_objects: [dbo.ReportStatus, dbo.Status, dbo.SubStatus]
+    synonyms: [status history, stuck, processing, completed, sent]
+    exclusions: [invoice status]
+  ordered_product:
+    preferred_objects: [dbo.ReportProduct, dbo.Product]
+    discouraged_objects: [dbo.SubscriptionReport, dbo.ProductsOrdered]
+    synonyms: [product, sku, ordered item]
+  delivery_configuration:
+    preferred_objects: [dbo.ReportFileDeliveryRule, dbo.FileType, dbo.DeliveryMethod]
+    synonyms: [dxf, file delivery, email delivery, delivery rule]
+  email_notification:
+    preferred_objects: [dbo.CustomerEmailAvailability, dbo.EmailType]
+    synonyms: [email availability, notification setting]
+facts:
+  - id: report_customer_is_profile
+    statement: dbo.Report.CustomerID references dbo.Profile.ProfileId.
+  - id: delivery_inheritance
+    statement: Delivery candidates include report rules plus rules where ReportID is null and ProfileID equals Report.CustomerID or OrgNodeID equals Report.OrgNodeID.
+  - id: invoice_status_is_not_report_status
+    statement: The phrase invoice status must not select dbo.ReportStatus.
+reviewed_relationships_file: ../../schema/test/db01/DB7222/semantic_relationships.json

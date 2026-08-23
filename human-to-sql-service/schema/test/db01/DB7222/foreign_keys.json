@@ -1,0 +1,2636 @@
+[
+  {
+    "parent_table": "ActivityReport",
+    "parent_column": "ActivityReportTypeId",
+    "referenced_table": "ActivityReportType",
+    "referenced_column": "ActivityReportTypeId"
+  },
+  {
+    "parent_table": "ActivityReportUsers",
+    "parent_column": "ActivityReportId",
+    "referenced_table": "ActivityReport",
+    "referenced_column": "ActivityReportId"
+  },
+  {
+    "parent_table": "AddOnProductCompatibility",
+    "parent_column": "AddOnProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "AddOnProductCompatibility",
+    "parent_column": "PrimaryProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "AddonProductPriceOverride",
+    "parent_column": "AddOnProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "AddonProductPriceOverride",
+    "parent_column": "PriceOverrideProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "AddonProductPriceOverride",
+    "parent_column": "PrimaryProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "Address",
+    "parent_column": "StateId",
+    "referenced_table": "States",
+    "referenced_column": "StateID"
+  },
+  {
+    "parent_table": "AlertDefinition",
+    "parent_column": "AlertID",
+    "referenced_table": "Alert",
+    "referenced_column": "AlertID"
+  },
+  {
+    "parent_table": "ApplicationFault",
+    "parent_column": "ApplicationEventID",
+    "referenced_table": "ApplicationEvent",
+    "referenced_column": "ApplicationEventID"
+  },
+  {
+    "parent_table": "ApplicationSource",
+    "parent_column": "PartnerWebServiceId",
+    "referenced_table": "PartnerWebService",
+    "referenced_column": "PartnerWebServiceId"
+  },
+  {
+    "parent_table": "ApplicationSource",
+    "parent_column": "WebserviceProtocolId",
+    "referenced_table": "WebserviceProtocol",
+    "referenced_column": "WebserviceProtocolId"
+  },
+  {
+    "parent_table": "ApplicationSourceAssociation",
+    "parent_column": "ApplicationSourceID",
+    "referenced_table": "ApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "ApplicationSourceAssociation",
+    "parent_column": "ReportAssociationTypeID",
+    "referenced_table": "ReportAssociationType",
+    "referenced_column": "ReportAssociationTypeID"
+  },
+  {
+    "parent_table": "AssessInspectionStatus",
+    "parent_column": "AppointmentId",
+    "referenced_table": "ReportOnsiteVendorMapping",
+    "referenced_column": "ReportOnsiteVendorMappingID"
+  },
+  {
+    "parent_table": "AssessInspectionStatus",
+    "parent_column": "JobReasonCodeId",
+    "referenced_table": "JobReasonCode",
+    "referenced_column": "JobReasonCodeID"
+  },
+  {
+    "parent_table": "AssessInspectionStatus",
+    "parent_column": "JobStatusId",
+    "referenced_table": "JobStatus",
+    "referenced_column": "JobStatusID"
+  },
+  {
+    "parent_table": "AssessInspectionStatus",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "AssessInspectionStatus",
+    "parent_column": "SiteActionId",
+    "referenced_table": "SiteAction",
+    "referenced_column": "SiteActionId"
+  },
+  {
+    "parent_table": "AssessJobSolutionCustomerMapping",
+    "parent_column": "AssessJobTypeId",
+    "referenced_table": "AssessJobType",
+    "referenced_column": "AssessJobTypeId"
+  },
+  {
+    "parent_table": "AssessJobSolutionCustomerMapping",
+    "parent_column": "SolutionTypeId",
+    "referenced_table": "SolutionType",
+    "referenced_column": "SolutionTypeId"
+  },
+  {
+    "parent_table": "AssessJobTypeFields",
+    "parent_column": "AssessJobTypeID",
+    "referenced_table": "AssessJobType",
+    "referenced_column": "AssessJobTypeId"
+  },
+  {
+    "parent_table": "AssessJobTypeFields",
+    "parent_column": "ValidatorID",
+    "referenced_table": "Validator",
+    "referenced_column": "ValidatorID"
+  },
+  {
+    "parent_table": "AssessJobTypeStatusReasonMapping",
+    "parent_column": "AssessJobTypeId",
+    "referenced_table": "AssessJobType",
+    "referenced_column": "AssessJobTypeId"
+  },
+  {
+    "parent_table": "AssessJobTypeStatusReasonMapping",
+    "parent_column": "StatusReasonId",
+    "referenced_table": "StatusReason",
+    "referenced_column": "StatusReasonID"
+  },
+  {
+    "parent_table": "Attribute",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "AttributeMapping",
+    "parent_column": "AttributeId",
+    "referenced_table": "Attribute",
+    "referenced_column": "AttributeID"
+  },
+  {
+    "parent_table": "AttributeMapping",
+    "parent_column": "AttributeTypeId",
+    "referenced_table": "AttributeType",
+    "referenced_column": "AttributeTypeId"
+  },
+  {
+    "parent_table": "BankAccount",
+    "parent_column": "BillPayerID",
+    "referenced_table": "BillPayer",
+    "referenced_column": "BillPayerID"
+  },
+  {
+    "parent_table": "BankAccount",
+    "parent_column": "BillingAddressID",
+    "referenced_table": "Address",
+    "referenced_column": "AddressID"
+  },
+  {
+    "parent_table": "BankAccountConsent",
+    "parent_column": "BankAccountConsentVerbiageId",
+    "referenced_table": "BankAccountConsentVerbiage",
+    "referenced_column": "BankAccountConsentVerbiageId"
+  },
+  {
+    "parent_table": "BankAccountConsent",
+    "parent_column": "BankAccountId",
+    "referenced_table": "BankAccount",
+    "referenced_column": "BankAccountID"
+  },
+  {
+    "parent_table": "BankAccountConsent",
+    "parent_column": "BillPayerId",
+    "referenced_table": "BillPayer",
+    "referenced_column": "BillPayerID"
+  },
+  {
+    "parent_table": "BankAccountTransaction",
+    "parent_column": "BankAccountID",
+    "referenced_table": "BankAccount",
+    "referenced_column": "BankAccountID"
+  },
+  {
+    "parent_table": "BankAccountTransaction",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "BillPayer",
+    "parent_column": "BillingAddressID",
+    "referenced_table": "Address",
+    "referenced_column": "AddressID"
+  },
+  {
+    "parent_table": "BillPayer",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "BillPayer",
+    "parent_column": "InvoiceTypeID",
+    "referenced_table": "InvoiceType",
+    "referenced_column": "InvoiceTypeID"
+  },
+  {
+    "parent_table": "BillPayer",
+    "parent_column": "TermsTypeId",
+    "referenced_table": "TermsType",
+    "referenced_column": "TermsTypeId"
+  },
+  {
+    "parent_table": "BillingGroup",
+    "parent_column": "ParentBillingGroupID",
+    "referenced_table": "BillingGroup",
+    "referenced_column": "BillingGroupID"
+  },
+  {
+    "parent_table": "BillingGroupAccess",
+    "parent_column": "BillingGroupID",
+    "referenced_table": "BillingGroup",
+    "referenced_column": "BillingGroupID"
+  },
+  {
+    "parent_table": "BillingGroupAccess",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "BillingGroupDataGroupMapping",
+    "parent_column": "BillingGroupID",
+    "referenced_table": "BillingGroup",
+    "referenced_column": "BillingGroupID"
+  },
+  {
+    "parent_table": "BillingGroupDataGroupMapping",
+    "parent_column": "DataGroupID",
+    "referenced_table": "DataGroup",
+    "referenced_column": "DataGroupID"
+  },
+  {
+    "parent_table": "BillingLog",
+    "parent_column": "BillPayerId",
+    "referenced_table": "BillPayer",
+    "referenced_column": "BillPayerID"
+  },
+  {
+    "parent_table": "BillingLog",
+    "parent_column": "CreditCardId",
+    "referenced_table": "CreditCard",
+    "referenced_column": "CreditCardID"
+  },
+  {
+    "parent_table": "BillingLog",
+    "parent_column": "UserId",
+    "referenced_table": "Users",
+    "referenced_column": "UserId"
+  },
+  {
+    "parent_table": "BusinessHours",
+    "parent_column": "RegionID",
+    "referenced_table": "Region",
+    "referenced_column": "RegionID"
+  },
+  {
+    "parent_table": "BusinessSegment",
+    "parent_column": "CustomerIndustryId",
+    "referenced_table": "CustomerIndustry",
+    "referenced_column": "CustomerIndustryID"
+  },
+  {
+    "parent_table": "Campaign",
+    "parent_column": "PromoId",
+    "referenced_table": "Promo",
+    "referenced_column": "PromoID"
+  },
+  {
+    "parent_table": "ContactFormCampaign",
+    "parent_column": "FormId",
+    "referenced_table": "ContactForm",
+    "referenced_column": "FormId"
+  },
+  {
+    "parent_table": "ContactFormEntries",
+    "parent_column": "CampaignId",
+    "referenced_table": "ContactFormCampaign",
+    "referenced_column": "CampaignId"
+  },
+  {
+    "parent_table": "ContactUsSubject",
+    "parent_column": "PortalID",
+    "referenced_table": "Portal",
+    "referenced_column": "PortalID"
+  },
+  {
+    "parent_table": "ControlState",
+    "parent_column": "PortalId",
+    "referenced_table": "Portal",
+    "referenced_column": "PortalID"
+  },
+  {
+    "parent_table": "ControlState",
+    "parent_column": "UserId",
+    "referenced_table": "Users",
+    "referenced_column": "UserId"
+  },
+  {
+    "parent_table": "CountryPlanLevelMapping",
+    "parent_column": "CountryId",
+    "referenced_table": "Country",
+    "referenced_column": "CountryID"
+  },
+  {
+    "parent_table": "CountryPlanLevelMapping",
+    "parent_column": "PlanLevelId",
+    "referenced_table": "PlanLevel",
+    "referenced_column": "PlanLevelID"
+  },
+  {
+    "parent_table": "CreditCard",
+    "parent_column": "BillPayerID",
+    "referenced_table": "BillPayer",
+    "referenced_column": "BillPayerID"
+  },
+  {
+    "parent_table": "CreditCard",
+    "parent_column": "BillingAddressID",
+    "referenced_table": "Address",
+    "referenced_column": "AddressID"
+  },
+  {
+    "parent_table": "CreditCard",
+    "parent_column": "CreditCardTypeID",
+    "referenced_table": "CreditCardType",
+    "referenced_column": "CreditCardTypeID"
+  },
+  {
+    "parent_table": "CreditCard",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "CreditCardConsent",
+    "parent_column": "BillPayerId",
+    "referenced_table": "BillPayer",
+    "referenced_column": "BillPayerID"
+  },
+  {
+    "parent_table": "CreditCardConsent",
+    "parent_column": "CreditCardId",
+    "referenced_table": "CreditCard",
+    "referenced_column": "CreditCardID"
+  },
+  {
+    "parent_table": "CreditCardMerchant",
+    "parent_column": "CreditCardProcessorId",
+    "referenced_table": "CreditCardProcessor",
+    "referenced_column": "CreditCardProcessorId"
+  },
+  {
+    "parent_table": "CreditCardTransaction",
+    "parent_column": "CreditCardID",
+    "referenced_table": "CreditCard",
+    "referenced_column": "CreditCardID"
+  },
+  {
+    "parent_table": "CreditCardTransaction",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "CreditCardTransaction",
+    "parent_column": "EagleViewUserID",
+    "referenced_table": "EagleViewUser",
+    "referenced_column": "UserID"
+  },
+  {
+    "parent_table": "CreditCardTransaction",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "CustomerAffiliateMapping",
+    "parent_column": "AffiliateId",
+    "referenced_table": "Affiliate",
+    "referenced_column": "AffiliateId"
+  },
+  {
+    "parent_table": "CustomerAffiliateMapping",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "CustomerAlert",
+    "parent_column": "AlertID",
+    "referenced_table": "Alert",
+    "referenced_column": "AlertID"
+  },
+  {
+    "parent_table": "CustomerAlert",
+    "parent_column": "CustomerID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "CustomerAttribute",
+    "parent_column": "AttributeID",
+    "referenced_table": "Attribute",
+    "referenced_column": "AttributeID"
+  },
+  {
+    "parent_table": "CustomerAttribute",
+    "parent_column": "CustomerID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "CustomerDocumentAttribute",
+    "parent_column": "DocumentAttributeId",
+    "referenced_table": "DocumentAttribute",
+    "referenced_column": "DocumentAttributeId"
+  },
+  {
+    "parent_table": "CustomerDocumentAttribute",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "CustomerDocumentMapping",
+    "parent_column": "DocumentId",
+    "referenced_table": "Document",
+    "referenced_column": "DocumentId"
+  },
+  {
+    "parent_table": "CustomerDocumentMapping",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "CustomerDocumentMapping",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "CustomerEmailAvailability",
+    "parent_column": "ApplicationSourceId",
+    "referenced_table": "ApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "CustomerEmailAvailability",
+    "parent_column": "CustomerIndustryID",
+    "referenced_table": "CustomerIndustry",
+    "referenced_column": "CustomerIndustryID"
+  },
+  {
+    "parent_table": "CustomerEmailAvailability",
+    "parent_column": "EmailTemplateId",
+    "referenced_table": "EmailTemplates",
+    "referenced_column": "EmailTemplateId"
+  },
+  {
+    "parent_table": "CustomerEmailAvailability",
+    "parent_column": "EmailTypeId",
+    "referenced_table": "EmailType",
+    "referenced_column": "EmailTypeId"
+  },
+  {
+    "parent_table": "CustomerEmailAvailability",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "CustomerEmailAvailability",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "CustomerInvoiceNote",
+    "parent_column": "InvoiceStatusID",
+    "referenced_table": "CustomerInvoiceStatus",
+    "referenced_column": "CustomerInvoiceStatusID"
+  },
+  {
+    "parent_table": "CustomerInvoiceNoteDailyEmail",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "CustomerPerilCodeMapping",
+    "parent_column": "StandardPerilCodeID",
+    "referenced_table": "StandardPerilCodes",
+    "referenced_column": "StandardPerilCodeID"
+  },
+  {
+    "parent_table": "CustomerPropertyMapping",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "CustomerPropertyMapping",
+    "parent_column": "PropertyAddressId",
+    "referenced_table": "PropertyAddress",
+    "referenced_column": "PropertyAddressID"
+  },
+  {
+    "parent_table": "CustomerPropertyMapping",
+    "parent_column": "PropertyId",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "CustomerRoofCompositionCodeMapping",
+    "parent_column": "StandardRoofCompositionCodeID",
+    "referenced_table": "StandardRoofCompositionCodes",
+    "referenced_column": "StandardRoofCompositionCodeID"
+  },
+  {
+    "parent_table": "CustomerSubscriptionTier",
+    "parent_column": "CustomerSubscriptionID",
+    "referenced_table": "CustomerSubscription",
+    "referenced_column": "CustomerSubscriptionID"
+  },
+  {
+    "parent_table": "CustomerSubscriptionTierPlanLevelMapping",
+    "parent_column": "CustomerSubscriptionTierID",
+    "referenced_table": "CustomerSubscriptionTier",
+    "referenced_column": "CustomerSubscriptionTierID"
+  },
+  {
+    "parent_table": "CustomerSubscriptionTierPlanLevelMapping",
+    "parent_column": "PlanLevelID",
+    "referenced_table": "PlanLevel",
+    "referenced_column": "PlanLevelID"
+  },
+  {
+    "parent_table": "CustomerVendor",
+    "parent_column": "CustomerId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "CustomerVendor",
+    "parent_column": "VendorTypeId",
+    "referenced_table": "VendorType",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "CustomerZipcodeMapping",
+    "parent_column": "CustomerId",
+    "referenced_table": "Users",
+    "referenced_column": "UserId"
+  },
+  {
+    "parent_table": "DSMEditorSessionUpdate",
+    "parent_column": "DSMEditorSessionID",
+    "referenced_table": "DSMEditorSession",
+    "referenced_column": "DSMEditorSessionID"
+  },
+  {
+    "parent_table": "DataGroup",
+    "parent_column": "MasterID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "DeliverableVerificationRule",
+    "parent_column": "ApplicationSourceId",
+    "referenced_table": "ApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "DeliverableVerificationRule",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "DeliverableVerificationRule",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "DeliverableVerificationRule",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "DeliveredReportFile_Test",
+    "parent_column": "ReportFileId",
+    "referenced_table": "ReportFile_Test",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "DeliveryProductCompatibility",
+    "parent_column": "DeliveryProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "DeliveryProductCompatibility",
+    "parent_column": "PrimaryProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "DocumentAttribute",
+    "parent_column": "DocumentId",
+    "referenced_table": "Document",
+    "referenced_column": "DocumentId"
+  },
+  {
+    "parent_table": "DocumentTemplate",
+    "parent_column": "DocumentId",
+    "referenced_table": "Document",
+    "referenced_column": "DocumentId"
+  },
+  {
+    "parent_table": "DocumentTemplate",
+    "parent_column": "DocumentTemplateTypeId",
+    "referenced_table": "DocumentTemplateType",
+    "referenced_column": "DocumentTemplateTypeId"
+  },
+  {
+    "parent_table": "EagleViewUser",
+    "parent_column": "EagleViewRoleID",
+    "referenced_table": "EagleViewRole",
+    "referenced_column": "EagleViewRoleID"
+  },
+  {
+    "parent_table": "FeatureGateMappings",
+    "parent_column": "FeatureGateID",
+    "referenced_table": "FeatureGates",
+    "referenced_column": "FeatureGateID"
+  },
+  {
+    "parent_table": "FileTypeAttributesMapping",
+    "parent_column": "AttributeId",
+    "referenced_table": "Attribute",
+    "referenced_column": "AttributeID"
+  },
+  {
+    "parent_table": "FileTypeAttributesRules",
+    "parent_column": "FileTypeAttributesMappingId",
+    "referenced_table": "FileTypeAttributesMapping",
+    "referenced_column": "ID"
+  },
+  {
+    "parent_table": "FloorType",
+    "parent_column": "FloorTypeId",
+    "referenced_table": "FloorType",
+    "referenced_column": "FloorTypeId"
+  },
+  {
+    "parent_table": "Holiday",
+    "parent_column": "RegionID",
+    "referenced_table": "Region",
+    "referenced_column": "RegionID"
+  },
+  {
+    "parent_table": "ImageInfo",
+    "parent_column": "ImageUsageId",
+    "referenced_table": "ImageUsage",
+    "referenced_column": "ImageUsageId"
+  },
+  {
+    "parent_table": "ImageInfoArchive",
+    "parent_column": "ImageUsageId",
+    "referenced_table": "ImageUsage",
+    "referenced_column": "ImageUsageId"
+  },
+  {
+    "parent_table": "ImageProviderUsability",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "ImageRestrictions",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ImageRestrictions",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "ImageRules",
+    "parent_column": "ImageUsageId",
+    "referenced_table": "ImageUsage",
+    "referenced_column": "ImageUsageId"
+  },
+  {
+    "parent_table": "Ledger",
+    "parent_column": "BillPayerID",
+    "referenced_table": "BillPayer",
+    "referenced_column": "BillPayerID"
+  },
+  {
+    "parent_table": "Ledger",
+    "parent_column": "CreditCardTransactionID",
+    "referenced_table": "CreditCardTransaction",
+    "referenced_column": "CreditCardTransactionID"
+  },
+  {
+    "parent_table": "Ledger",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "Ledger",
+    "parent_column": "InvoiceTypeID",
+    "referenced_table": "InvoiceType",
+    "referenced_column": "InvoiceTypeID"
+  },
+  {
+    "parent_table": "Ledger",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "Ledger",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "Ledger",
+    "parent_column": "TransactionTypeID",
+    "referenced_table": "TransactionType",
+    "referenced_column": "TransactionTypeID"
+  },
+  {
+    "parent_table": "LibertyMutualStateRegionMapping",
+    "parent_column": "RegionID",
+    "referenced_table": "LibertyMutualRegion",
+    "referenced_column": "RegionID"
+  },
+  {
+    "parent_table": "MeasurementTranslationMapping",
+    "parent_column": "ApplicationSourceId",
+    "referenced_table": "ApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "MeasurementTranslationMapping",
+    "parent_column": "MeasurementTranslationFormatId",
+    "referenced_table": "MeasurementTranslationFormat",
+    "referenced_column": "MeasurementTranslationFormatId"
+  },
+  {
+    "parent_table": "MeasurementTranslationMapping",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "MeasurementTranslationMapping",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "MeasurementType",
+    "parent_column": "MeasurementClassID",
+    "referenced_table": "MeasurementClass",
+    "referenced_column": "MeasurementClassID"
+  },
+  {
+    "parent_table": "MeasurementType",
+    "parent_column": "UnitOfMeasureId",
+    "referenced_table": "UnitOfMeasure",
+    "referenced_column": "UnitOfMeasureId"
+  },
+  {
+    "parent_table": "Membership",
+    "parent_column": "ApplicationId",
+    "referenced_table": "Applications",
+    "referenced_column": "ApplicationId"
+  },
+  {
+    "parent_table": "Membership",
+    "parent_column": "UserId",
+    "referenced_table": "Users",
+    "referenced_column": "UserId"
+  },
+  {
+    "parent_table": "MembershipPlan",
+    "parent_column": "BillPayerID",
+    "referenced_table": "BillPayer",
+    "referenced_column": "BillPayerID"
+  },
+  {
+    "parent_table": "MembershipPlan",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "MembershipPlan",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "MembershipPlanLog",
+    "parent_column": "BillPayerId",
+    "referenced_table": "BillPayer",
+    "referenced_column": "BillPayerID"
+  },
+  {
+    "parent_table": "MembershipPlanLog",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "MobileProfile",
+    "parent_column": "CustomerID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "MobileProfile",
+    "parent_column": "MobileProviderID",
+    "referenced_table": "MobileProvider",
+    "referenced_column": "MobileProviderID"
+  },
+  {
+    "parent_table": "OnSiteProductMapping",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "OnSiteProductMapping",
+    "parent_column": "SolutionTypeId",
+    "referenced_table": "SolutionType",
+    "referenced_column": "SolutionTypeId"
+  },
+  {
+    "parent_table": "OnSiteProductMapping",
+    "parent_column": "StateId",
+    "referenced_table": "States",
+    "referenced_column": "StateID"
+  },
+  {
+    "parent_table": "OnSiteVendorServiceAreaHandlers",
+    "parent_column": "OnSiteVendorAgentID",
+    "referenced_table": "OnsiteVendorAgent",
+    "referenced_column": "OnsiteVendorAgentID"
+  },
+  {
+    "parent_table": "OnSiteVendorServiceAreaHandlers",
+    "parent_column": "OnSiteVendorServiceAreaID",
+    "referenced_table": "OnSiteVendorServiceArea",
+    "referenced_column": "OnSiteVendorServiceAreaID"
+  },
+  {
+    "parent_table": "OnSiteVendorServiceAreaHandlers",
+    "parent_column": "OnSiteVendorTeamID",
+    "referenced_table": "OnsiteVendorTeam",
+    "referenced_column": "OnsiteVendorTeamID"
+  },
+  {
+    "parent_table": "OnSiteVendorServiceAreaZipCodes",
+    "parent_column": "OnSiteVendorServiceAreaID",
+    "referenced_table": "OnSiteVendorServiceArea",
+    "referenced_column": "OnSiteVendorServiceAreaID"
+  },
+  {
+    "parent_table": "OnSiteVendorSolutionTypeMapping",
+    "parent_column": "OnSiteVendorId",
+    "referenced_table": "OnsiteVendor",
+    "referenced_column": "OnsiteVendorId"
+  },
+  {
+    "parent_table": "OnSiteVendorSolutionTypeMapping",
+    "parent_column": "SolutionTypeId",
+    "referenced_table": "SolutionType",
+    "referenced_column": "SolutionTypeId"
+  },
+  {
+    "parent_table": "OnSiteZipCodeCoverage",
+    "parent_column": "OnsiteVendorId",
+    "referenced_table": "OnsiteVendor",
+    "referenced_column": "OnsiteVendorId"
+  },
+  {
+    "parent_table": "OnsiteAgentSkillsMapping",
+    "parent_column": "OnsiteSkillsID",
+    "referenced_table": "OnsiteSkills",
+    "referenced_column": "OnsiteSkillsID"
+  },
+  {
+    "parent_table": "OnsiteAgentSkillsMapping",
+    "parent_column": "OnsiteVendorAgentID",
+    "referenced_table": "OnsiteVendorAgent",
+    "referenced_column": "OnsiteVendorAgentID"
+  },
+  {
+    "parent_table": "OnsiteEventLog",
+    "parent_column": "OnsiteEventId",
+    "referenced_table": "OnsiteEvent",
+    "referenced_column": "OnsiteEventId"
+  },
+  {
+    "parent_table": "OnsiteEventOrgnodeMapping",
+    "parent_column": "OnsiteEventId",
+    "referenced_table": "OnsiteEvent",
+    "referenced_column": "OnsiteEventId"
+  },
+  {
+    "parent_table": "OnsiteTeamSkillsMapping",
+    "parent_column": "OnsiteSkillsID",
+    "referenced_table": "OnsiteSkills",
+    "referenced_column": "OnsiteSkillsID"
+  },
+  {
+    "parent_table": "OnsiteTeamSkillsMapping",
+    "parent_column": "OnsiteVendorTeamID",
+    "referenced_table": "OnsiteVendorTeam",
+    "referenced_column": "OnsiteVendorTeamID"
+  },
+  {
+    "parent_table": "OnsiteVendor",
+    "parent_column": "ApplicationSourceId",
+    "referenced_table": "ApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "Order",
+    "parent_column": "PartnerApplicationSourceID",
+    "referenced_table": "PartnerApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "OrderPlacedByEagleViewUser",
+    "parent_column": "EagleViewUserId",
+    "referenced_table": "EagleViewUser",
+    "referenced_column": "UserID"
+  },
+  {
+    "parent_table": "OrderPlacedByEagleViewUser",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "OrgNodePricingPlans",
+    "parent_column": "PlanLevelID",
+    "referenced_table": "PlanLevel",
+    "referenced_column": "PlanLevelID"
+  },
+  {
+    "parent_table": "PMCompatibility",
+    "parent_column": "CompatibleProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "PMCompatibility",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "PartnerApplicationSourcePricing",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "PartnerApplicationSourcePricing",
+    "parent_column": "PartnerApplicationSourceID",
+    "referenced_table": "PartnerApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "PartnerApplicationSourcePricing",
+    "parent_column": "PricingTierId",
+    "referenced_table": "PricingTier",
+    "referenced_column": "PricingTierID"
+  },
+  {
+    "parent_table": "PartnerApplicationSourcePricing",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "PartnerApplicationSourcePricing",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "PartnerTemplateFieldRules",
+    "parent_column": "BulkOrderFieldId",
+    "referenced_table": "BulkOrderField",
+    "referenced_column": "BulkOrderFieldId"
+  },
+  {
+    "parent_table": "PartnerTemplateFieldRules",
+    "parent_column": "PartnerTemplateId",
+    "referenced_table": "PartnerTemplate",
+    "referenced_column": "PartnerTemplateId"
+  },
+  {
+    "parent_table": "PartnerTemplateFieldRules",
+    "parent_column": "PartnerTemplateRuleTypeId",
+    "referenced_table": "PartnerTemplateRuleType",
+    "referenced_column": "PartnerTemplateRuleTypeId"
+  },
+  {
+    "parent_table": "PartnerTemplateRules",
+    "parent_column": "PartnerTemplateId",
+    "referenced_table": "PartnerTemplate",
+    "referenced_column": "PartnerTemplateId"
+  },
+  {
+    "parent_table": "PlanLevel",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "PlanLevel",
+    "parent_column": "TierTypeID",
+    "referenced_table": "TierType",
+    "referenced_column": "TierTypeID"
+  },
+  {
+    "parent_table": "PlanLevelQualifier",
+    "parent_column": "PlanLevelID",
+    "referenced_table": "PlanLevel",
+    "referenced_column": "PlanLevelID"
+  },
+  {
+    "parent_table": "Portal",
+    "parent_column": "MasterAccountID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "PortalDomainRestriction",
+    "parent_column": "PortalID",
+    "referenced_table": "Portal",
+    "referenced_column": "PortalID"
+  },
+  {
+    "parent_table": "PortalDomainSettings",
+    "parent_column": "PortalID",
+    "referenced_table": "Portal",
+    "referenced_column": "PortalID"
+  },
+  {
+    "parent_table": "PortalRoleDNNRoleMapping",
+    "parent_column": "PortalRoleID",
+    "referenced_table": "PortalRole",
+    "referenced_column": "ID"
+  },
+  {
+    "parent_table": "PricingTier",
+    "parent_column": "TierTypeID",
+    "referenced_table": "TierType",
+    "referenced_column": "TierTypeID"
+  },
+  {
+    "parent_table": "Product",
+    "parent_column": "DuplicateProductTypeID",
+    "referenced_table": "DuplicateProductType",
+    "referenced_column": "DuplicateProductTypeID"
+  },
+  {
+    "parent_table": "Product",
+    "parent_column": "ProductClassID",
+    "referenced_table": "ProductClass",
+    "referenced_column": "ProductClassID"
+  },
+  {
+    "parent_table": "Product",
+    "parent_column": "ProductGroupID",
+    "referenced_table": "ProductGroup",
+    "referenced_column": "ProductGroupID"
+  },
+  {
+    "parent_table": "ProductAttributeDocumentUserMapping",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "ProductAvailability",
+    "parent_column": "ApplicationSourceId",
+    "referenced_table": "ApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "ProductAvailability",
+    "parent_column": "PartnerApplicationSourceId",
+    "referenced_table": "PartnerApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "ProductAvailability",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ProductAvailability",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "ProductAvailability",
+    "parent_column": "SalesRegionId",
+    "referenced_table": "SalesRegion",
+    "referenced_column": "SalesRegionId"
+  },
+  {
+    "parent_table": "ProductBundleDiscount",
+    "parent_column": "PlanLevelID",
+    "referenced_table": "PlanLevel",
+    "referenced_column": "PlanLevelID"
+  },
+  {
+    "parent_table": "ProductBundleDiscount",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ProductChainMapping",
+    "parent_column": "ProductChainID",
+    "referenced_table": "ProductChain",
+    "referenced_column": "ProductChainID"
+  },
+  {
+    "parent_table": "ProductFamilyAvailability",
+    "parent_column": "ProductFamilyMappingId",
+    "referenced_table": "ProductFamilyMappings",
+    "referenced_column": "ProductFamilyMappingId"
+  },
+  {
+    "parent_table": "ProductFamilyMappings",
+    "parent_column": "ProductFamilyId",
+    "referenced_table": "ProductFamily",
+    "referenced_column": "ProductFamilyId"
+  },
+  {
+    "parent_table": "ProductFamilyMappings",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ProductMeasurementRequestTypes",
+    "parent_column": "MeasurementRequestTypeId",
+    "referenced_table": "MeasurementRequestTypes",
+    "referenced_column": "MeasurementRequestTypeId"
+  },
+  {
+    "parent_table": "ProductMeasurementRequestTypes",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ProductPricing",
+    "parent_column": "PlanLevelID",
+    "referenced_table": "PlanLevel",
+    "referenced_column": "PlanLevelID"
+  },
+  {
+    "parent_table": "ProductPricing",
+    "parent_column": "PricingTierID",
+    "referenced_table": "PricingTier",
+    "referenced_column": "PricingTierID"
+  },
+  {
+    "parent_table": "ProductPricing",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ProductQCConfiguration",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ProductSubstitution",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ProductSubstitution",
+    "parent_column": "SubstituteProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ProductSubstitutionAttribute",
+    "parent_column": "AttributeID",
+    "referenced_table": "Attribute",
+    "referenced_column": "AttributeID"
+  },
+  {
+    "parent_table": "ProductSubstitutionAttribute",
+    "parent_column": "ProductSubstitutionID",
+    "referenced_table": "ProductSubstitution",
+    "referenced_column": "ProductSubstitutionID"
+  },
+  {
+    "parent_table": "ProductSuiteMapping",
+    "parent_column": "ProductSuiteID",
+    "referenced_table": "ProductSuite",
+    "referenced_column": "ProductSuiteID"
+  },
+  {
+    "parent_table": "ProductUpgrade",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "ProductUpgrade",
+    "parent_column": "PlanLevelId",
+    "referenced_table": "PlanLevel",
+    "referenced_column": "PlanLevelID"
+  },
+  {
+    "parent_table": "ProductUpgrade",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "ProductUpgrade",
+    "parent_column": "UpgradeFromProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ProductUpgrade",
+    "parent_column": "UpgradeToProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ProductsOrdered",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ProductsOrdered",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "Profile",
+    "parent_column": "BillPayerID",
+    "referenced_table": "BillPayer",
+    "referenced_column": "BillPayerID"
+  },
+  {
+    "parent_table": "Profile",
+    "parent_column": "CustomerIndustryID",
+    "referenced_table": "CustomerIndustry",
+    "referenced_column": "CustomerIndustryID"
+  },
+  {
+    "parent_table": "Profile",
+    "parent_column": "CustomerReferralID",
+    "referenced_table": "CustomerReferral",
+    "referenced_column": "CustomerReferralID"
+  },
+  {
+    "parent_table": "Profile",
+    "parent_column": "SalesID",
+    "referenced_table": "EagleViewUser",
+    "referenced_column": "UserID"
+  },
+  {
+    "parent_table": "Profile",
+    "parent_column": "SalesRegionId",
+    "referenced_table": "SalesRegion",
+    "referenced_column": "SalesRegionId"
+  },
+  {
+    "parent_table": "Profile",
+    "parent_column": "UserId",
+    "referenced_table": "Users",
+    "referenced_column": "UserId"
+  },
+  {
+    "parent_table": "ProfileAddress",
+    "parent_column": "AddressID",
+    "referenced_table": "Address",
+    "referenced_column": "AddressID"
+  },
+  {
+    "parent_table": "ProfileAddress",
+    "parent_column": "ProfileAddressTypeID",
+    "referenced_table": "ProfileAddressType",
+    "referenced_column": "ProfileAddressTypeID"
+  },
+  {
+    "parent_table": "ProfileAddress",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "ProfileOktaUserInfo",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "ProfilePlan",
+    "parent_column": "InvoiceTypeID",
+    "referenced_table": "InvoiceType",
+    "referenced_column": "InvoiceTypeID"
+  },
+  {
+    "parent_table": "ProfilePlan",
+    "parent_column": "PlanLevelID",
+    "referenced_table": "PlanLevel",
+    "referenced_column": "PlanLevelID"
+  },
+  {
+    "parent_table": "ProfilePlan",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "ProfilePlanLog",
+    "parent_column": "ProfilePlanId",
+    "referenced_table": "ProfilePlan",
+    "referenced_column": "ProfilePlanID"
+  },
+  {
+    "parent_table": "Promo",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "Promo",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "Promo",
+    "parent_column": "PromoCodePrefixID",
+    "referenced_table": "PromoCodePrefix",
+    "referenced_column": "PromoCodePrefixID"
+  },
+  {
+    "parent_table": "Promo",
+    "parent_column": "PromoTypeID",
+    "referenced_table": "PromoType",
+    "referenced_column": "PromoTypeID"
+  },
+  {
+    "parent_table": "PromoCodePrefix",
+    "parent_column": "EagleViewUserID",
+    "referenced_table": "EagleViewUser",
+    "referenced_column": "UserID"
+  },
+  {
+    "parent_table": "PromoUsage",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "PromoUsage",
+    "parent_column": "PromoId",
+    "referenced_table": "Promo",
+    "referenced_column": "PromoID"
+  },
+  {
+    "parent_table": "PromoUsage",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "PropertyAddress",
+    "parent_column": "DataSourceID",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  },
+  {
+    "parent_table": "PropertyAddress",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "PropertyAddress",
+    "parent_column": "StateId",
+    "referenced_table": "States",
+    "referenced_column": "StateID"
+  },
+  {
+    "parent_table": "PropertyAssessmentImageMetadata",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "PropertyAssessmentImageMetadataReportFileMapping",
+    "parent_column": "PropertyAssessmentImageMetadataId",
+    "referenced_table": "PropertyAssessmentImageMetadata",
+    "referenced_column": "PropertyAssessmentImageMetadataId"
+  },
+  {
+    "parent_table": "PropertyDataSlaRule",
+    "parent_column": "DeliveryProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "PropertyDataSlaRule",
+    "parent_column": "PrimaryProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "PropertyDataSlaRule",
+    "parent_column": "PropertyDataSlaConditionID",
+    "referenced_table": "PropertyDataSlaCondition",
+    "referenced_column": "PropertyDataSlaConditionID"
+  },
+  {
+    "parent_table": "PropertyDataSlaRule",
+    "parent_column": "SalesRegionID",
+    "referenced_table": "SalesRegion",
+    "referenced_column": "SalesRegionId"
+  },
+  {
+    "parent_table": "PropertyDataSlaRule",
+    "parent_column": "TurnaroundTimeID",
+    "referenced_table": "TurnaroundTime",
+    "referenced_column": "TurnaroundTimeID"
+  },
+  {
+    "parent_table": "PropertyDetail",
+    "parent_column": "DataSourceID",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  },
+  {
+    "parent_table": "PropertyDetail",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "PropertyEvent",
+    "parent_column": "EventID",
+    "referenced_table": "Event",
+    "referenced_column": "EventID"
+  },
+  {
+    "parent_table": "PropertyEvent",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "PropertyImage",
+    "parent_column": "CustomerPropertyMappingID",
+    "referenced_table": "CustomerPropertyMapping",
+    "referenced_column": "CustomerPropertyMappingId"
+  },
+  {
+    "parent_table": "PropertyImage",
+    "parent_column": "DataSourceID",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  },
+  {
+    "parent_table": "PropertyImage",
+    "parent_column": "EventID",
+    "referenced_table": "Event",
+    "referenced_column": "EventID"
+  },
+  {
+    "parent_table": "PropertyImage",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "PropertyMeasurement",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "PropertyOwner",
+    "parent_column": "DataSourceID",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  },
+  {
+    "parent_table": "PropertyOwner",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "PropertyPermit",
+    "parent_column": "DataSourceID",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  },
+  {
+    "parent_table": "PropertyPermit",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "PropertyRisk",
+    "parent_column": "DataSourceID",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  },
+  {
+    "parent_table": "PropertyRisk",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "PropertyRoofHistory",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "PropertyStructure",
+    "parent_column": "DataSourceID",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  },
+  {
+    "parent_table": "PropertyStructure",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "PropertyStructure",
+    "parent_column": "RoofTypeID",
+    "referenced_table": "PropertyRoofType",
+    "referenced_column": "PropertyRoofTypeID"
+  },
+  {
+    "parent_table": "PropertyWeather",
+    "parent_column": "DataSourceID",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  },
+  {
+    "parent_table": "PropertyWeather",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "PropertyWind",
+    "parent_column": "DataSourceId",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  },
+  {
+    "parent_table": "PropertyWind",
+    "parent_column": "PropertyId",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "QueryOperator",
+    "parent_column": "QueryableFieldDataTypeID",
+    "referenced_table": "QueryableFieldDataType",
+    "referenced_column": "ID"
+  },
+  {
+    "parent_table": "QueryableField",
+    "parent_column": "QueryableFieldDataTypeID",
+    "referenced_table": "QueryableFieldDataType",
+    "referenced_column": "ID"
+  },
+  {
+    "parent_table": "QuickPitchCustomerNameProfileMapping",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "QuickPitchInboundOrder",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "QuickPitchInboundOrderStatusHistory",
+    "parent_column": "OrderStatusId",
+    "referenced_table": "QuickPitchInboundOrderStatus",
+    "referenced_column": "QuickPitchInboundOrderStatusId"
+  },
+  {
+    "parent_table": "QuickPitchInboundOrderStatusHistory",
+    "parent_column": "QuickPitchInboundOrderId",
+    "referenced_table": "QuickPitchInboundOrder",
+    "referenced_column": "QuickPitchInboundOrderId"
+  },
+  {
+    "parent_table": "Report",
+    "parent_column": "ApplicationSourceId",
+    "referenced_table": "ApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "Report",
+    "parent_column": "CustomerID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "Report",
+    "parent_column": "FloorTypeID",
+    "referenced_table": "FloorType",
+    "referenced_column": "FloorTypeId"
+  },
+  {
+    "parent_table": "Report",
+    "parent_column": "MeasurementRequestTypeID",
+    "referenced_table": "MeasurementRequestTypes",
+    "referenced_column": "MeasurementRequestTypeId"
+  },
+  {
+    "parent_table": "Report",
+    "parent_column": "OrderID",
+    "referenced_table": "Order",
+    "referenced_column": "OrderID"
+  },
+  {
+    "parent_table": "Report",
+    "parent_column": "PMReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "Report",
+    "parent_column": "PropertyID",
+    "referenced_table": "Property",
+    "referenced_column": "PropertyID"
+  },
+  {
+    "parent_table": "Report",
+    "parent_column": "StateID",
+    "referenced_table": "States",
+    "referenced_column": "StateID"
+  },
+  {
+    "parent_table": "ReportAddress",
+    "parent_column": "MapperUsedID",
+    "referenced_table": "AddressHandlerActors",
+    "referenced_column": "ActorID"
+  },
+  {
+    "parent_table": "ReportAddress",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportAddress",
+    "parent_column": "StateID",
+    "referenced_table": "States",
+    "referenced_column": "StateID"
+  },
+  {
+    "parent_table": "ReportAddress",
+    "parent_column": "VerificationResultTypeID",
+    "referenced_table": "VerificationResultType",
+    "referenced_column": "VerificationResultTypeID"
+  },
+  {
+    "parent_table": "ReportAddress",
+    "parent_column": "VerifierUsedID",
+    "referenced_table": "AddressHandlerActors",
+    "referenced_column": "ActorID"
+  },
+  {
+    "parent_table": "ReportAgentPreference",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportAssociation",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "ReportAssociation",
+    "parent_column": "ReportAssociationTypeID",
+    "referenced_table": "ReportAssociationType",
+    "referenced_column": "ReportAssociationTypeID"
+  },
+  {
+    "parent_table": "ReportAssociation",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportAttribute",
+    "parent_column": "AttributeID",
+    "referenced_table": "Attribute",
+    "referenced_column": "AttributeID"
+  },
+  {
+    "parent_table": "ReportAttribute",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportBillPayer",
+    "parent_column": "BillPayerId",
+    "referenced_table": "BillPayer",
+    "referenced_column": "BillPayerID"
+  },
+  {
+    "parent_table": "ReportBillPayer",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportCampaign",
+    "parent_column": "CampaignId",
+    "referenced_table": "Campaign",
+    "referenced_column": "CampaignId"
+  },
+  {
+    "parent_table": "ReportCampaign",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportCustomData",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportDependency",
+    "parent_column": "DependentReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportDependency",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportDetail",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportDocumentAttribute",
+    "parent_column": "DocumentAttributeId",
+    "referenced_table": "DocumentAttribute",
+    "referenced_column": "DocumentAttributeId"
+  },
+  {
+    "parent_table": "ReportDocumentAttribute",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportDocumentMapping",
+    "parent_column": "DocumentId",
+    "referenced_table": "Document",
+    "referenced_column": "DocumentId"
+  },
+  {
+    "parent_table": "ReportDocumentMapping",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ReportDocumentMapping",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportFilenameRule",
+    "parent_column": "ProfileId",
+    "referenced_table": "Users",
+    "referenced_column": "UserId"
+  },
+  {
+    "parent_table": "ReportInvoiceJob",
+    "parent_column": "RequestId",
+    "referenced_table": "ReportInvoiceRequest",
+    "referenced_column": "RequestId"
+  },
+  {
+    "parent_table": "ReportInvoiceJob",
+    "parent_column": "StatusId",
+    "referenced_table": "ReportInvoiceStatus",
+    "referenced_column": "StatusId"
+  },
+  {
+    "parent_table": "ReportInvoiceRequest",
+    "parent_column": "StatusId",
+    "referenced_table": "ReportInvoiceStatus",
+    "referenced_column": "StatusId"
+  },
+  {
+    "parent_table": "ReportMeasurement",
+    "parent_column": "MeasurementTypeID",
+    "referenced_table": "MeasurementType",
+    "referenced_column": "MeasurementTypeID"
+  },
+  {
+    "parent_table": "ReportMeasurement",
+    "parent_column": "ReportMeasurementVersionID",
+    "referenced_table": "ReportMeasurementVersion",
+    "referenced_column": "ReportMeasurementVersionID"
+  },
+  {
+    "parent_table": "ReportOnsiteVendorMapping",
+    "parent_column": "JobReasonCodeID",
+    "referenced_table": "JobReasonCode",
+    "referenced_column": "JobReasonCodeID"
+  },
+  {
+    "parent_table": "ReportOnsiteVendorMapping",
+    "parent_column": "JobStatusID",
+    "referenced_table": "JobStatus",
+    "referenced_column": "JobStatusID"
+  },
+  {
+    "parent_table": "ReportOnsiteVendorMapping",
+    "parent_column": "OnSiteVendorServiceAreaID",
+    "referenced_table": "OnSiteVendorServiceArea",
+    "referenced_column": "OnSiteVendorServiceAreaID"
+  },
+  {
+    "parent_table": "ReportOnsiteVendorMapping",
+    "parent_column": "OnsiteVendorID",
+    "referenced_table": "OnsiteVendor",
+    "referenced_column": "OnsiteVendorId"
+  },
+  {
+    "parent_table": "ReportOnsiteVendorMapping",
+    "parent_column": "OnsiteVendorTeamID",
+    "referenced_table": "OnsiteVendorTeam",
+    "referenced_column": "OnsiteVendorTeamID"
+  },
+  {
+    "parent_table": "ReportOnsiteVendorMapping",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportPricingOverride",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "ReportPricingOverride",
+    "parent_column": "ProductId",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ReportPricingOverride",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportProduct",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "ReportProduct",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "ReportProduct",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportSWFDetail",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportStatus",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportStatus",
+    "parent_column": "StatusID",
+    "referenced_table": "Status",
+    "referenced_column": "StatusID"
+  },
+  {
+    "parent_table": "ReportStatus",
+    "parent_column": "SubStatusID",
+    "referenced_table": "SubStatus",
+    "referenced_column": "SubStatusID"
+  },
+  {
+    "parent_table": "ReportStatusReasonMapping",
+    "parent_column": "ReportStatusID",
+    "referenced_table": "ReportStatus",
+    "referenced_column": "ReportStatusID"
+  },
+  {
+    "parent_table": "ReportStatusReasonMapping",
+    "parent_column": "StatusReasonID",
+    "referenced_table": "StatusReason",
+    "referenced_column": "StatusReasonID"
+  },
+  {
+    "parent_table": "ReportTaxCollected",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "ReportTaxCollected",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportTaxCollected",
+    "parent_column": "TaxTypeID",
+    "referenced_table": "TaxType",
+    "referenced_column": "TaxTypeID"
+  },
+  {
+    "parent_table": "ReportTransactions",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "ReportTransactions",
+    "parent_column": "InvoiceTypeId",
+    "referenced_table": "InvoiceType",
+    "referenced_column": "InvoiceTypeID"
+  },
+  {
+    "parent_table": "ReportTransactions",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportTransactions",
+    "parent_column": "TransactionTypeId",
+    "referenced_table": "TransactionType",
+    "referenced_column": "TransactionTypeID"
+  },
+  {
+    "parent_table": "ReportTurnaroundTime",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "ReportTurnaroundTime",
+    "parent_column": "TurnaroundTimeId",
+    "referenced_table": "TurnaroundTime",
+    "referenced_column": "TurnaroundTimeID"
+  },
+  {
+    "parent_table": "ReportingGroupAccess",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "ReportingGroupAccess",
+    "parent_column": "ReportingGroupID",
+    "referenced_table": "ReportingGroup",
+    "referenced_column": "ReportingGroupID"
+  },
+  {
+    "parent_table": "ReportingGroupActivityReportMapping",
+    "parent_column": "ActivityReportID",
+    "referenced_table": "ActivityReport",
+    "referenced_column": "ActivityReportId"
+  },
+  {
+    "parent_table": "ReportingGroupActivityReportMapping",
+    "parent_column": "ReportingGroupID",
+    "referenced_table": "ReportingGroup",
+    "referenced_column": "ReportingGroupID"
+  },
+  {
+    "parent_table": "ReportingGroupDataGroupMapping",
+    "parent_column": "DataGroupID",
+    "referenced_table": "DataGroup",
+    "referenced_column": "DataGroupID"
+  },
+  {
+    "parent_table": "ReportingGroupDataGroupMapping",
+    "parent_column": "ReportingGroupID",
+    "referenced_table": "ReportingGroup",
+    "referenced_column": "ReportingGroupID"
+  },
+  {
+    "parent_table": "RiskManagementChecklist",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "RiskManagementChecklist",
+    "parent_column": "RiskManagementChecklistTypeId",
+    "referenced_table": "RiskManagementChecklistType",
+    "referenced_column": "RiskManagementChecklistTypeID"
+  },
+  {
+    "parent_table": "RiskManagementChecklistQuestionMapping",
+    "parent_column": "DataSourceID",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  },
+  {
+    "parent_table": "RiskManagementChecklistQuestionMapping",
+    "parent_column": "RiskManagementChecklistID",
+    "referenced_table": "RiskManagementChecklist",
+    "referenced_column": "RiskManagementChecklistID"
+  },
+  {
+    "parent_table": "RiskManagementChecklistQuestionMapping",
+    "parent_column": "RiskManagementQuestionCategoryID",
+    "referenced_table": "RiskManagementQuestionCategory",
+    "referenced_column": "RiskManagementQuestionCategoryID"
+  },
+  {
+    "parent_table": "RiskManagementChecklistQuestionMapping",
+    "parent_column": "SurveyQuestionID",
+    "referenced_table": "SurveyQuestion",
+    "referenced_column": "SurveyQuestionID"
+  },
+  {
+    "parent_table": "RiskManagementChecklistResponse",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "RiskManagementChecklistResponse",
+    "parent_column": "SurveyQuestionID",
+    "referenced_table": "SurveyQuestion",
+    "referenced_column": "SurveyQuestionID"
+  },
+  {
+    "parent_table": "RiskManagementChecklistResponse",
+    "parent_column": "SurveyResponseOptionID",
+    "referenced_table": "SurveyResponseOption",
+    "referenced_column": "SurveyResponseOptionID"
+  },
+  {
+    "parent_table": "RiskManagementClientData",
+    "parent_column": "CurrencyTypeID",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "RiskManagementClientData",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "Roles",
+    "parent_column": "ApplicationId",
+    "referenced_table": "Applications",
+    "referenced_column": "ApplicationId"
+  },
+  {
+    "parent_table": "SalesRegionMapping",
+    "parent_column": "CountryId",
+    "referenced_table": "Country",
+    "referenced_column": "CountryID"
+  },
+  {
+    "parent_table": "SalesRegionMapping",
+    "parent_column": "SalesRegionId",
+    "referenced_table": "SalesRegion",
+    "referenced_column": "SalesRegionId"
+  },
+  {
+    "parent_table": "SalesRegionMapping",
+    "parent_column": "StateId",
+    "referenced_table": "States",
+    "referenced_column": "StateID"
+  },
+  {
+    "parent_table": "SalesRegionPlanLevelMapping",
+    "parent_column": "PlanLevelId",
+    "referenced_table": "PlanLevel",
+    "referenced_column": "PlanLevelID"
+  },
+  {
+    "parent_table": "SalesRegionPlanLevelMapping",
+    "parent_column": "SalesRegionId",
+    "referenced_table": "SalesRegion",
+    "referenced_column": "SalesRegionId"
+  },
+  {
+    "parent_table": "SalesSiteAuthorization",
+    "parent_column": "SalesSitePermissionId",
+    "referenced_table": "SalesSitePermissions",
+    "referenced_column": "SalesSitePermissionId"
+  },
+  {
+    "parent_table": "ScheduledOrgNodePricingPlanAudit",
+    "parent_column": "ActionTypeID",
+    "referenced_table": "ScheduledOrgNodePricingPlanAuditActionType",
+    "referenced_column": "ActionTypeID"
+  },
+  {
+    "parent_table": "ScheduledOrgNodePricingPlans",
+    "parent_column": "PlanLevelID",
+    "referenced_table": "PlanLevel",
+    "referenced_column": "PlanLevelID"
+  },
+  {
+    "parent_table": "ScheduledOrgNodePricingPlans",
+    "parent_column": "PreviousOrgNodePricingPlanID",
+    "referenced_table": "OrgNodePricingPlans",
+    "referenced_column": "OrgNodePricingPlanID"
+  },
+  {
+    "parent_table": "SiteAction",
+    "parent_column": "SiteNoteTypeId",
+    "referenced_table": "SiteNoteType",
+    "referenced_column": "SiteNoteTypeId"
+  },
+  {
+    "parent_table": "SiteActivity",
+    "parent_column": "ReportId",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "SiteActivity",
+    "parent_column": "SiteActionId",
+    "referenced_table": "SiteAction",
+    "referenced_column": "SiteActionId"
+  },
+  {
+    "parent_table": "States",
+    "parent_column": "CountryId",
+    "referenced_table": "Country",
+    "referenced_column": "CountryID"
+  },
+  {
+    "parent_table": "StatusReason",
+    "parent_column": "StatusReasonTypeID",
+    "referenced_table": "StatusReasonType",
+    "referenced_column": "StatusReasonTypeID"
+  },
+  {
+    "parent_table": "StatusSubStatusReasonMapping",
+    "parent_column": "StatusID",
+    "referenced_table": "Status",
+    "referenced_column": "StatusID"
+  },
+  {
+    "parent_table": "StatusSubStatusReasonMapping",
+    "parent_column": "StatusReasonID",
+    "referenced_table": "StatusReason",
+    "referenced_column": "StatusReasonID"
+  },
+  {
+    "parent_table": "StatusSubStatusReasonMapping",
+    "parent_column": "SubStatusID",
+    "referenced_table": "SubStatus",
+    "referenced_column": "SubStatusID"
+  },
+  {
+    "parent_table": "SubStatusMapping",
+    "parent_column": "StatusID",
+    "referenced_table": "Status",
+    "referenced_column": "StatusID"
+  },
+  {
+    "parent_table": "SubStatusMapping",
+    "parent_column": "SubStatusID",
+    "referenced_table": "SubStatus",
+    "referenced_column": "SubStatusID"
+  },
+  {
+    "parent_table": "SubscriptionProductMapping",
+    "parent_column": "CustomerSubscriptionID",
+    "referenced_table": "CustomerSubscription",
+    "referenced_column": "CustomerSubscriptionID"
+  },
+  {
+    "parent_table": "SubscriptionProductMapping",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "SubscriptionReport",
+    "parent_column": "CustomerSubscriptionID",
+    "referenced_table": "CustomerSubscription",
+    "referenced_column": "CustomerSubscriptionID"
+  },
+  {
+    "parent_table": "SubscriptionReport",
+    "parent_column": "CustomerSubscriptionTierID",
+    "referenced_table": "CustomerSubscriptionTier",
+    "referenced_column": "CustomerSubscriptionTierID"
+  },
+  {
+    "parent_table": "SubscriptionReport",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "SubscriptionReport",
+    "parent_column": "ReportID",
+    "referenced_table": "Report",
+    "referenced_column": "ReportID"
+  },
+  {
+    "parent_table": "SupplierProductMapping",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "SurveyQuestion",
+    "parent_column": "DataSourceID",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  },
+  {
+    "parent_table": "SurveyQuestion",
+    "parent_column": "ObservationTypeID",
+    "referenced_table": "ObservationType",
+    "referenced_column": "ObservationTypeID"
+  },
+  {
+    "parent_table": "SurveyQuestion",
+    "parent_column": "RequestingMasterProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "SurveyQuestion",
+    "parent_column": "SurveyQuestionTypeID",
+    "referenced_table": "SurveyQuestionType",
+    "referenced_column": "SurveyQuestionTypeID"
+  },
+  {
+    "parent_table": "SurveyQuestionSetProfileHistory",
+    "parent_column": "ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "SurveyQuestionSetProfileHistory",
+    "parent_column": "SurveyQuestionSetID",
+    "referenced_table": "SurveyQuestionSet",
+    "referenced_column": "SurveyQuestionSetID"
+  },
+  {
+    "parent_table": "SurveyQuestionSetQuestionMapping",
+    "parent_column": "SurveyQuestionID",
+    "referenced_table": "SurveyQuestion",
+    "referenced_column": "SurveyQuestionID"
+  },
+  {
+    "parent_table": "SurveyQuestionSetQuestionMapping",
+    "parent_column": "SurveyQuestionSectionID",
+    "referenced_table": "SurveyQuestionSection",
+    "referenced_column": "SurveyQuestionSectionID"
+  },
+  {
+    "parent_table": "SurveyQuestionSetQuestionMapping",
+    "parent_column": "SurveyQuestionSetID",
+    "referenced_table": "SurveyQuestionSet",
+    "referenced_column": "SurveyQuestionSetID"
+  },
+  {
+    "parent_table": "SurveyResponse",
+    "parent_column": "SurveyQuestionID",
+    "referenced_table": "SurveyQuestion",
+    "referenced_column": "SurveyQuestionID"
+  },
+  {
+    "parent_table": "SurveyResponse",
+    "parent_column": "SurveyResponseOptionID",
+    "referenced_table": "SurveyResponseOption",
+    "referenced_column": "SurveyResponseOptionID"
+  },
+  {
+    "parent_table": "SurveyResponseOption",
+    "parent_column": "FollowupSurveyQuestionID",
+    "referenced_table": "SurveyQuestion",
+    "referenced_column": "SurveyQuestionID"
+  },
+  {
+    "parent_table": "SurveyResponseOption",
+    "parent_column": "SurveyQuestionID",
+    "referenced_table": "SurveyQuestion",
+    "referenced_column": "SurveyQuestionID"
+  },
+  {
+    "parent_table": "SymbilityCustomerLookup",
+    "parent_column": "EagleViewUserId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "TurnaroundTime",
+    "parent_column": "AddonProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "TurnaroundTime",
+    "parent_column": "DeliveryProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "TurnaroundTime",
+    "parent_column": "SalesRegionID",
+    "referenced_table": "SalesRegion",
+    "referenced_column": "SalesRegionId"
+  },
+  {
+    "parent_table": "TurnaroundTime",
+    "parent_column": "TurnaroundTimeUsageTypeID",
+    "referenced_table": "TurnaroundTimeUsageType",
+    "referenced_column": "TurnaroundTimeUsageTypeID"
+  },
+  {
+    "parent_table": "TurnaroundTime",
+    "parent_column": "TurnaroundTypeID",
+    "referenced_table": "TurnaroundType",
+    "referenced_column": "TurnaroundTypeID"
+  },
+  {
+    "parent_table": "UnderwritingOrgNodePQM",
+    "parent_column": "SurveyQuestionID",
+    "referenced_table": "SurveyQuestion",
+    "referenced_column": "SurveyQuestionID"
+  },
+  {
+    "parent_table": "UnderwritingProductQuestionMapping",
+    "parent_column": "ProductID",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "UnderwritingProductQuestionMapping",
+    "parent_column": "SurveyQuestionID",
+    "referenced_table": "SurveyQuestion",
+    "referenced_column": "SurveyQuestionID"
+  },
+  {
+    "parent_table": "UserAudit",
+    "parent_column": "PortalId",
+    "referenced_table": "Portal",
+    "referenced_column": "PortalID"
+  },
+  {
+    "parent_table": "UserAudit",
+    "parent_column": "UserId",
+    "referenced_table": "Users",
+    "referenced_column": "UserId"
+  },
+  {
+    "parent_table": "Users",
+    "parent_column": "ApplicationId",
+    "referenced_table": "Applications",
+    "referenced_column": "ApplicationId"
+  },
+  {
+    "parent_table": "UsersProxy",
+    "parent_column": "ProxyUserId",
+    "referenced_table": "Users",
+    "referenced_column": "UserId"
+  },
+  {
+    "parent_table": "UsersProxy",
+    "parent_column": "UserId",
+    "referenced_table": "Users",
+    "referenced_column": "UserId"
+  },
+  {
+    "parent_table": "UsersProxy",
+    "parent_column": "UserProxyTypeId",
+    "referenced_table": "UsersProxyType",
+    "referenced_column": "UsersProxyTypeId"
+  },
+  {
+    "parent_table": "Validator",
+    "parent_column": "CustomerID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "WeatherTriageRules",
+    "parent_column": "StateID",
+    "referenced_table": "States",
+    "referenced_column": "StateID"
+  },
+  {
+    "parent_table": "WeatherTriageRules",
+    "parent_column": "WeatherTriageDecisionId",
+    "referenced_table": "WeatherTriageDecision",
+    "referenced_column": "WeatherTriageDecisionId"
+  },
+  {
+    "parent_table": "WebServiceRefreshToken",
+    "parent_column": "ApplicationSourceId",
+    "referenced_table": "ApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "WebServiceRefreshToken",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "WebServiceRefreshToken_backup",
+    "parent_column": "ApplicationSourceId",
+    "referenced_table": "ApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "WebServiceRefreshToken_backup",
+    "parent_column": "ProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "WebservicesRoleMapping",
+    "parent_column": "ApplicationSourceId",
+    "referenced_table": "ApplicationSource",
+    "referenced_column": "Id"
+  },
+  {
+    "parent_table": "WebservicesRoleMapping",
+    "parent_column": "WebservicesRolesId",
+    "referenced_table": "WebservicesRoles",
+    "referenced_column": "WebservicesRoleId"
+  },
+  {
+    "parent_table": "WindTriageRules",
+    "parent_column": "WeatherTriageDecisionId",
+    "referenced_table": "WeatherTriageDecision",
+    "referenced_column": "WeatherTriageDecisionId"
+  },
+  {
+    "parent_table": "XactWareAdjustor",
+    "parent_column": "EV_ProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "XactwareCountryProfile",
+    "parent_column": "EagleViewProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "XactwareCustomerLookup",
+    "parent_column": "XactwareCustomerLookupAlgorithmId",
+    "referenced_table": "XactwareCustomerLookupAlgorithms",
+    "referenced_column": "XactwareCustomerLookupAlgorithmId"
+  },
+  {
+    "parent_table": "XactwareDuplicate",
+    "parent_column": "XactwareDuplicateActionTypeId",
+    "referenced_table": "XactwareDuplicateActionType",
+    "referenced_column": "XactwareDuplicateActionTypeId"
+  },
+  {
+    "parent_table": "XactwareProfileSpecificUser",
+    "parent_column": "EagleViewProfileID",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "XactwareProfileSpecificXnidMatch",
+    "parent_column": "EagleViewProfileId",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "customerfreebie",
+    "parent_column": "customerid",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "customerfreebie",
+    "parent_column": "productid",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "eventlog",
+    "parent_column": "evuserid",
+    "referenced_table": "EagleViewUser",
+    "referenced_column": "UserID"
+  },
+  {
+    "parent_table": "invoice",
+    "parent_column": "currencytypeid",
+    "referenced_table": "CurrencyType",
+    "referenced_column": "CurrencyTypeID"
+  },
+  {
+    "parent_table": "invoice",
+    "parent_column": "customerid",
+    "referenced_table": "Profile",
+    "referenced_column": "ProfileId"
+  },
+  {
+    "parent_table": "subscriptionfreebie",
+    "parent_column": "productid",
+    "referenced_table": "Product",
+    "referenced_column": "ProductID"
+  },
+  {
+    "parent_table": "webservicesession",
+    "parent_column": "datasourceid",
+    "referenced_table": "DataSource",
+    "referenced_column": "DataSourceID"
+  }
+]

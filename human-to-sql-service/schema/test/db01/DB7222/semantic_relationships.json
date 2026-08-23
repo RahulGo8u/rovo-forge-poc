@@ -1,0 +1,89 @@
+{
+  "note": "Reviewed domain relationships not declared as SQL Server foreign keys. These supplement, but never replace, sys.foreign_key_columns.",
+  "relationships": [
+    {
+      "parent_table": "ReportFileDeliveryRule",
+      "parent_column": "ReportID",
+      "referenced_table": "Report",
+      "referenced_column": "ReportID",
+      "source": "domain-reviewed"
+    },
+    {
+      "parent_table": "ReportFileDeliveryRule",
+      "parent_column": "ProfileID",
+      "referenced_table": "Profile",
+      "referenced_column": "ProfileId",
+      "source": "domain-reviewed"
+    },
+    {
+      "parent_table": "ReportFileDeliveryRule",
+      "parent_column": "FileTypeID",
+      "referenced_table": "FileType",
+      "referenced_column": "Id",
+      "source": "domain-reviewed"
+    },
+    {
+      "parent_table": "ReportFileDeliveryRule",
+      "parent_column": "DeliveryMethodID",
+      "referenced_table": "DeliveryMethod",
+      "referenced_column": "Id",
+      "source": "domain-reviewed"
+    },
+    {
+      "parent_table": "ReportFileDeliveryRule",
+      "parent_column": "ProductID",
+      "referenced_table": "Product",
+      "referenced_column": "ProductID",
+      "source": "domain-reviewed"
+    },
+    {
+      "parent_table": "ReportFileDeliveryRule",
+      "parent_column": "ApplicationSourceID",
+      "referenced_table": "ApplicationSource",
+      "referenced_column": "Id",
+      "source": "domain-reviewed"
+    },
+    {
+      "parent_table": "ReportFileDeliveryRule",
+      "parent_column": "EmailTypeID",
+      "referenced_table": "EmailType",
+      "referenced_column": "EmailTypeId",
+      "source": "domain-reviewed"
+    },
+    {
+      "parent_table": "CustomerEmailAvailability",
+      "parent_column": "OrgNodeId",
+      "referenced_table": "Report",
+      "referenced_column": "OrgNodeID",
+      "source": "domain-reviewed"
+    },
+    {
+      "parent_table": "CustomerEmailAvailability",
+      "parent_column": "ProfileId",
+      "referenced_table": "Report",
+      "referenced_column": "CustomerID",
+      "source": "domain-reviewed"
+    },
+    {
+      "parent_table": "ReportFileDeliveryRule",
+      "parent_column": "OrgNodeID",
+      "referenced_table": "Report",
+      "referenced_column": "OrgNodeID",
+      "source": "domain-reviewed"
+    },
+    {
+      "parent_table": "ReportFileDeliveryRule",
+      "parent_column": "ProfileID",
+      "referenced_table": "Report",
+      "referenced_column": "CustomerID",
+      "source": "domain-reviewed"
+    },
+    {
+      "parent_table": "ReportInvoiceJob",
+      "parent_column": "ReportId",
+      "referenced_table": "Report",
+      "referenced_column": "ReportID",
+      "source": "domain-reviewed"
+    }
+  ]
+}

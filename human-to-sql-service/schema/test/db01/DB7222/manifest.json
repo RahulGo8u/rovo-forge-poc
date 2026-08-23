@@ -1,0 +1,20 @@
+{
+  "environment": "test",
+  "server": "DB01NODE1",
+  "folder": "db01",
+  "database": "DB7222",
+  "schema": "dbo",
+  "object_count": 439,
+  "base_table_count": 410,
+  "includes_views": true,
+  "column_count": 2904,
+  "captured_from": "INFORMATION_SCHEMA.COLUMNS via MCP sql_execute_select",
+  "purpose": "Offline schema pack for the planner so it does not describe tables on every request",
+  "planner_policy": {
+    "schema_pack": "allowlisted",
+    "tables": "curated by PLANNER_TABLES",
+    "writes": "forbidden",
+    "row_limit": "required",
+    "parameters": "required"
+  }
+}

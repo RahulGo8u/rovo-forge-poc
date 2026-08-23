@@ -1,0 +1,263 @@
+{
+  "version": 1,
+  "node": "db01",
+  "database": "DB7222",
+  "example_count": 10,
+  "examples": [
+    {
+      "question": "What is the current report status?",
+      "intent": "report-status-timeline",
+      "sql": "SELECT TOP (100)\n  rs.ReportStatusID,\n  rs.ReportID,\n  rs.StatusID,\n  st.Name AS StatusName,\n  st.ExternalName AS StatusExternalName,\n  rs.SubStatusID,\n  ss.Name AS SubStatusName,\n  ss.ExternalName AS SubStatusExternalName,\n  rs.StatusTimeStamp,\n  rs.ExpiredDate,\n  rs.UserEmail,\n  CASE WHEN rs.ExpiredDate IS NULL THEN 1 ELSE 0 END AS IsCurrent\nFROM dbo.Report AS r\nINNER JOIN dbo.ReportStatus AS rs ON rs.ReportID = r.ReportID\nINNER JOIN dbo.Status AS st ON st.StatusID = rs.StatusID\nINNER JOIN dbo.SubStatus AS ss ON ss.SubStatusID = rs.SubStatusID\nWHERE r.ReportID = @ReportID\nORDER BY rs.StatusTimeStamp DESC;",
+      "params": {
+        "ReportID": 45036187
+      },
+      "objects": [
+        "Report",
+        "ReportStatus",
+        "Status",
+        "SubStatus"
+      ],
+      "safety": {
+        "read_only": true,
+        "single_statement": true,
+        "tables": [
+          "report",
+          "reportstatus",
+          "status",
+          "substatus"
+        ],
+        "parameters": [
+          "reportid"
+        ],
+        "row_limited": true
+      }
+    },
+    {
+      "question": "Show the report status timeline and substatus history.",
+      "intent": "report-status-timeline",
+      "sql": "SELECT TOP (100)\n  rs.ReportStatusID,\n  rs.ReportID,\n  rs.StatusID,\n  st.Name AS StatusName,\n  st.ExternalName AS StatusExternalName,\n  rs.SubStatusID,\n  ss.Name AS SubStatusName,\n  ss.ExternalName AS SubStatusExternalName,\n  rs.StatusTimeStamp,\n  rs.ExpiredDate,\n  rs.UserEmail,\n  CASE WHEN rs.ExpiredDate IS NULL THEN 1 ELSE 0 END AS IsCurrent\nFROM dbo.Report AS r\nINNER JOIN dbo.ReportStatus AS rs ON rs.ReportID = r.ReportID\nINNER JOIN dbo.Status AS st ON st.StatusID = rs.StatusID\nINNER JOIN dbo.SubStatus AS ss ON ss.SubStatusID = rs.SubStatusID\nWHERE r.ReportID = @ReportID\nORDER BY rs.StatusTimeStamp DESC;",
+      "params": {
+        "ReportID": 45036187
+      },
+      "objects": [
+        "Report",
+        "ReportStatus",
+        "Status",
+        "SubStatus"
+      ],
+      "safety": {
+        "read_only": true,
+        "single_statement": true,
+        "tables": [
+          "report",
+          "reportstatus",
+          "status",
+          "substatus"
+        ],
+        "parameters": [
+          "reportid"
+        ],
+        "row_limited": true
+      }
+    },
+    {
+      "question": "Is this report still processing or already sent?",
+      "intent": "report-status-timeline",
+      "sql": "SELECT TOP (100)\n  rs.ReportStatusID,\n  rs.ReportID,\n  rs.StatusID,\n  st.Name AS StatusName,\n  st.ExternalName AS StatusExternalName,\n  rs.SubStatusID,\n  ss.Name AS SubStatusName,\n  ss.ExternalName AS SubStatusExternalName,\n  rs.StatusTimeStamp,\n  rs.ExpiredDate,\n  rs.UserEmail,\n  CASE WHEN rs.ExpiredDate IS NULL THEN 1 ELSE 0 END AS IsCurrent\nFROM dbo.Report AS r\nINNER JOIN dbo.ReportStatus AS rs ON rs.ReportID = r.ReportID\nINNER JOIN dbo.Status AS st ON st.StatusID = rs.StatusID\nINNER JOIN dbo.SubStatus AS ss ON ss.SubStatusID = rs.SubStatusID\nWHERE r.ReportID = @ReportID\nORDER BY rs.StatusTimeStamp DESC;",
+      "params": {
+        "ReportID": 45036187
+      },
+      "objects": [
+        "Report",
+        "ReportStatus",
+        "Status",
+        "SubStatus"
+      ],
+      "safety": {
+        "read_only": true,
+        "single_statement": true,
+        "tables": [
+          "report",
+          "reportstatus",
+          "status",
+          "substatus"
+        ],
+        "parameters": [
+          "reportid"
+        ],
+        "row_limited": true
+      }
+    },
+    {
+      "question": "Show effective report, profile, and organization delivery rule candidates.",
+      "intent": "report-file-delivery-rules",
+      "sql": "SELECT TOP (200)\n  r.ReportID,\n  rules.Id AS DeliveryRuleID,\n  CASE\n    WHEN rules.ReportID = r.ReportID THEN 'report'\n    WHEN rules.ProfileID = r.CustomerID THEN 'profile'\n    WHEN rules.OrgNodeID = r.OrgNodeID THEN 'organization'\n    ELSE 'unknown'\n  END AS RuleScope,\n  rules.OrgNodeID,\n  rules.ProfileID,\n  rules.ProductID,\n  rules.FileTypeID,\n  rules.FileTypeGroupID,\n  rules.DeliveryMethodID,\n  rules.EmailTypeID,\n  rules.Disabled,\n  rules.OverrideChildren\nFROM dbo.Report AS r\nINNER JOIN dbo.ReportFileDeliveryRule AS rules\n  ON rules.ReportID = r.ReportID\n  OR (\n    rules.ReportID IS NULL\n    AND (\n      rules.ProfileID = r.CustomerID\n      OR rules.OrgNodeID = r.OrgNodeID\n    )\n  )\nWHERE r.ReportID = @ReportID\nORDER BY RuleScope, rules.Id;",
+      "params": {
+        "ReportID": 45036187
+      },
+      "objects": [
+        "Report",
+        "ReportFileDeliveryRule"
+      ],
+      "safety": {
+        "read_only": true,
+        "single_statement": true,
+        "tables": [
+          "report",
+          "reportfiledeliveryrule"
+        ],
+        "parameters": [
+          "reportid"
+        ],
+        "row_limited": true
+      }
+    },
+    {
+      "question": "Customer did not receive the DXF; inspect inherited delivery configuration.",
+      "intent": "report-file-delivery-rules",
+      "sql": "SELECT TOP (200)\n  r.ReportID,\n  rules.Id AS DeliveryRuleID,\n  CASE\n    WHEN rules.ReportID = r.ReportID THEN 'report'\n    WHEN rules.ProfileID = r.CustomerID THEN 'profile'\n    WHEN rules.OrgNodeID = r.OrgNodeID THEN 'organization'\n    ELSE 'unknown'\n  END AS RuleScope,\n  rules.OrgNodeID,\n  rules.ProfileID,\n  rules.ProductID,\n  rules.FileTypeID,\n  rules.FileTypeGroupID,\n  rules.DeliveryMethodID,\n  rules.EmailTypeID,\n  rules.Disabled,\n  rules.OverrideChildren\nFROM dbo.Report AS r\nINNER JOIN dbo.ReportFileDeliveryRule AS rules\n  ON rules.ReportID = r.ReportID\n  OR (\n    rules.ReportID IS NULL\n    AND (\n      rules.ProfileID = r.CustomerID\n      OR rules.OrgNodeID = r.OrgNodeID\n    )\n  )\nWHERE r.ReportID = @ReportID\nORDER BY RuleScope, rules.Id;",
+      "params": {
+        "ReportID": 45036187
+      },
+      "objects": [
+        "Report",
+        "ReportFileDeliveryRule"
+      ],
+      "safety": {
+        "read_only": true,
+        "single_statement": true,
+        "tables": [
+          "report",
+          "reportfiledeliveryrule"
+        ],
+        "parameters": [
+          "reportid"
+        ],
+        "row_limited": true
+      }
+    },
+    {
+      "question": "Are email notifications enabled for this report profile or organization?",
+      "intent": "customer-email-notification-settings",
+      "sql": "SELECT TOP (100)\n  r.ReportID,\n  settings.CustomerEmailAvailabilityId,\n  CASE\n    WHEN settings.ProfileId = r.CustomerID THEN 'profile'\n    WHEN settings.OrgNodeId = r.OrgNodeID THEN 'organization'\n    ELSE 'unknown'\n  END AS SettingScope,\n  settings.ProfileId,\n  settings.OrgNodeId,\n  settings.ProductId,\n  settings.ApplicationSourceId,\n  settings.EmailTypeId,\n  settings.EmailTemplateId,\n  settings.IsEnabled,\n  settings.OverrideChildren\nFROM dbo.Report AS r\nINNER JOIN dbo.CustomerEmailAvailability AS settings\n  ON settings.ProfileId = r.CustomerID\n  OR settings.OrgNodeId = r.OrgNodeID\nWHERE r.ReportID = @ReportID\nORDER BY SettingScope, settings.CustomerEmailAvailabilityId;",
+      "params": {
+        "ReportID": 45036187
+      },
+      "objects": [
+        "Report",
+        "CustomerEmailAvailability"
+      ],
+      "safety": {
+        "read_only": true,
+        "single_statement": true,
+        "tables": [
+          "customeremailavailability",
+          "report"
+        ],
+        "parameters": [
+          "reportid"
+        ],
+        "row_limited": true
+      }
+    },
+    {
+      "question": "What is the property street, city, state, and zip?",
+      "intent": "report-property-address",
+      "sql": "SELECT TOP (50)\n  address.ReportAddressID,\n  address.ReportID,\n  address.Address,\n  address.Address2,\n  address.City,\n  address.State,\n  address.Zip,\n  address.Country,\n  address.Latitude,\n  address.Longitude,\n  address.AddressTypeID,\n  address.County\nFROM dbo.Report AS r\nINNER JOIN dbo.ReportAddress AS address ON address.ReportID = r.ReportID\nWHERE r.OrderID = @OrderID\nORDER BY address.ReportAddressID;",
+      "params": {
+        "OrderID": 43476401
+      },
+      "objects": [
+        "Report",
+        "ReportAddress"
+      ],
+      "safety": {
+        "read_only": true,
+        "single_statement": true,
+        "tables": [
+          "report",
+          "reportaddress"
+        ],
+        "parameters": [
+          "orderid"
+        ],
+        "row_limited": true
+      }
+    },
+    {
+      "question": "Which products or SKUs were ordered for this report?",
+      "intent": "report-ordered-products",
+      "sql": "SELECT TOP (100)\n  report_product.ReportProductID,\n  report_product.ReportID,\n  report_product.ProductID,\n  product.Name AS ProductName,\n  product.Abbreviation AS ProductAbbreviation,\n  product.Active AS ProductActive\nFROM dbo.Report AS r\nINNER JOIN dbo.ReportProduct AS report_product ON report_product.ReportID = r.ReportID\nINNER JOIN dbo.Product AS product ON product.ProductID = report_product.ProductID\nWHERE r.ReportID = @ReportID\nORDER BY report_product.ReportProductID;",
+      "params": {
+        "ReportID": 45036187
+      },
+      "objects": [
+        "Report",
+        "ReportProduct",
+        "Product"
+      ],
+      "safety": {
+        "read_only": true,
+        "single_statement": true,
+        "tables": [
+          "product",
+          "report",
+          "reportproduct"
+        ],
+        "parameters": [
+          "reportid"
+        ],
+        "row_limited": true
+      }
+    },
+    {
+      "question": "What products were billed on this order?",
+      "intent": "report-ordered-products",
+      "sql": "SELECT TOP (100)\n  report_product.ReportProductID,\n  report_product.ReportID,\n  report_product.ProductID,\n  product.Name AS ProductName,\n  product.Abbreviation AS ProductAbbreviation,\n  product.Active AS ProductActive\nFROM dbo.Report AS r\nINNER JOIN dbo.ReportProduct AS report_product ON report_product.ReportID = r.ReportID\nINNER JOIN dbo.Product AS product ON product.ProductID = report_product.ProductID\nWHERE r.ReportID = @ReportID\nORDER BY report_product.ReportProductID;",
+      "params": {
+        "ReportID": 45036187
+      },
+      "objects": [
+        "Report",
+        "ReportProduct",
+        "Product"
+      ],
+      "safety": {
+        "read_only": true,
+        "single_statement": true,
+        "tables": [
+          "product",
+          "report",
+          "reportproduct"
+        ],
+        "parameters": [
+          "reportid"
+        ],
+        "row_limited": true
+      }
+    },
+    {
+      "question": "Find the report header and order association.",
+      "intent": "report-header",
+      "sql": "SELECT TOP (50)\n  report.ReportID,\n  report.CustomerID,\n  report.OrgNodeID,\n  report.OrderID,\n  report.City,\n  report.State,\n  report.Zip,\n  report.OrderPlacedDate\nFROM dbo.Report AS report\nWHERE report.ReportID = @ReportID\nORDER BY report.ReportID;",
+      "params": {
+        "ReportID": 45036187
+      },
+      "objects": [
+        "Report"
+      ],
+      "safety": {
+        "read_only": true,
+        "single_statement": true,
+        "tables": [
+          "report"
+        ],
+        "parameters": [
+          "reportid"
+        ],
+        "row_limited": true
+      }
+    }
+  ],
+  "failures": []
+}
