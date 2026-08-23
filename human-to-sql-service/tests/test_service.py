@@ -6,7 +6,7 @@ from unittest.mock import patch
 from fastapi.testclient import TestClient
 
 from app.main import app
-from app.services.nl2sql import validate_generated_sql
+from app.services.nl2sql import repair_literal_identifiers, validate_generated_sql
 from app.services.nl2sql import generate_sql as generate_model_sql
 from app.services.planner import load_schema_pack
 from app.services.query_router import prepare_or_generate_query
@@ -69,13 +69,14 @@ class TemplateTests(unittest.TestCase):
         self.assertTrue(result["ok"])
         self.assertIn("SELECT TOP", result["sql"])
 
-    def test_prompt_identifier_is_not_treated_as_supplied_parameter(self) -> None:
+    def test_prompt_identifier_is_inferred_without_request_id(self) -> None:
         result = prepare_or_generate_query(
             prompt="show report status for report 45036187",
             query_mode="templates_only",
         )
-        self.assertFalse(result["ok"])
-        self.assertIn("request body", result["error"])
+        self.assertTrue(result["ok"])
+        self.assertEqual(result["mode"], "template")
+        self.assertIn("@ReportID", result["sql"])
 
 
 class GeminiGenerationTests(unittest.TestCase):
@@ -163,6 +164,20 @@ class SqlGuardrailTests(unittest.TestCase):
             relationships=self.relationships,
         )
 
+    def test_repair_rewrites_literal_identifier_to_parameter(self) -> None:
+        sql = (
+            "SELECT TOP (10) r.ReportID FROM dbo.Report AS r "
+            "WHERE r.ReportID = 45036187 ORDER BY r.ReportID;"
+        )
+        repaired = repair_literal_identifiers(sql, {"ReportID": 45036187})
+        self.assertIn("= @ReportID", repaired)
+        self.assertNotIn("= 45036187", repaired)
+        self.validate(
+            repaired,
+            tables=["Report"],
+            params={"ReportID": 45036187},
+        )
+
     def test_rejects_inline_long_identifier(self) -> None:
         self.assert_rejected(
             "SELECT TOP (10) r.ReportID FROM dbo.Report AS r "
@@ -203,6 +218,26 @@ class ApiContractTests(unittest.TestCase):
         response = self.client.get("/health")
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.json()["execution"], "disabled")
+
+    def test_root_ui_serves_prompt_form(self) -> None:
+        response = self.client.get("/")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("Human to SQL", response.text)
+        self.assertIn("Generate SQL", response.text)
+        self.assertNotIn("Report ID", response.text)
+
+    def test_generate_without_manual_report_id_uses_prompt_value(self) -> None:
+        response = self.client.post(
+            "/api/v1/sql/generate",
+            json={
+                "prompt": "show report status timeline for report 45036187",
+                "environment": "test",
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        body = response.json()
+        self.assertTrue(body["ok"])
+        self.assertIn("@ReportID", body["sql"])
 
     def test_catalog_endpoint_exposes_readiness(self) -> None:
         response = self.client.get("/api/v1/catalog/databases")

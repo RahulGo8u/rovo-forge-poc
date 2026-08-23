@@ -31,10 +31,27 @@ PARAMETER_COLUMNS = {
     "organization_node_id": ("OrganizationNodeID", "@OrganizationNodeID", "dbo.Report.OrgNodeID"),
     "profile_id": ("ProfileID", "@ProfileID", "dbo.Report.CustomerID (profile FK)"),
 }
+COLUMN_TO_PARAM = {
+    "ReportID": "@ReportID",
+    "ReportId": "@ReportID",
+    "OrderID": "@OrderID",
+    "OrderId": "@OrderID",
+    "CustomerID": "@CustomerID",
+    "CustomerId": "@CustomerID",
+    "OrgNodeID": "@OrganizationNodeID",
+    "OrganizationNodeID": "@OrganizationNodeID",
+    "ProfileID": "@ProfileID",
+    "ProfileId": "@ProfileID",
+}
 
 # Long bare numbers in generated SQL almost always mean an inlined identifier,
 # which defeats parameterisation and plan reuse.
 INLINE_ID_LITERAL = re.compile(r"(?<![\w.@])\d{5,}(?![\w.])")
+PARAM_LITERAL_PATTERN = re.compile(
+    r"(?P<prefix>(?:\b(?:[A-Za-z_][\w]*\s*\.)?(?:ReportID|ReportId|OrderID|OrderId|CustomerID|CustomerId|OrgNodeID|OrganizationNodeID|ProfileID|ProfileId)\s*=\s*))"
+    r"(?P<value>\d{3,})",
+    flags=re.IGNORECASE,
+)
 
 SYSTEM_INSTRUCTION = """\
 You are a SQL generator for a read-only support triage tool at a property measurement company.
@@ -156,6 +173,29 @@ def _columns_by_table(pack_tables: dict[str, list[dict[str, Any]]], tables: list
         name.casefold(): {str(column["name"]).casefold() for column in pack_tables.get(name, [])}
         for name in tables
     }
+
+
+def repair_literal_identifiers(sql: str, params: dict[str, int]) -> str:
+    """Best-effort deterministic repair for literal identifier values.
+
+    If the model emitted a value like `r.ReportID = 45036187`, rewrite it to the
+    matching bound parameter when that identifier is present in the supplied params
+    map. This preserves the model's semantics while preventing rejected SQL from
+    escaping the validator.
+    """
+    repaired = sql
+    for column_name, value in sorted((name, num) for name, num in params.items() if num is not None):
+        placeholder = COLUMN_TO_PARAM.get(column_name)
+        if not placeholder:
+            continue
+        sql_column_variants = [column_name, column_name.lower(), column_name.casefold()]
+        for alias_column in sorted(set(sql_column_variants), key=len):
+            pattern = re.compile(
+                rf"(?P<prefix>(?:\b(?:[A-Za-z_][\w]*\s*\.)?{re.escape(alias_column)}\s*=\s*))(?P<value>{re.escape(str(value))})(?=(?:\b|\s|;|,|\)|$))",
+                flags=re.IGNORECASE,
+            )
+            repaired = pattern.sub(rf"\g<prefix>{placeholder}", repaired)
+    return repaired
 
 
 def _validate_columns(sql: str, allowed: dict[str, set[str]]) -> None:
@@ -424,7 +464,7 @@ def generate_sql(
             "retrieval": retrieval_report,
             "model": meta,
         }
-    sql = f"{sql};"
+    sql = repair_literal_identifiers(f"{sql};", params)
 
     attempts = [{"kind": "generate", **meta}]
     repaired = False
@@ -456,7 +496,7 @@ def generate_sql(
             repaired_sql = (repaired_answer.get("sql") or "").strip().rstrip(";")
             if not repaired_answer.get("answerable", True) or not repaired_sql:
                 raise ValueError(repaired_answer.get("notes") or "Model declined repair")
-            repaired_sql += ";"
+            repaired_sql = repair_literal_identifiers(f"{repaired_sql};", params)
             safety = validate_generated_sql(
                 repaired_sql,
                 allowed_tables=retrieval.tables,

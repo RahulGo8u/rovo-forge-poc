@@ -482,7 +482,7 @@ def prepare_query(
             "schema": pack["manifest"],
         }
 
-    # Identifier parameters must come from typed request fields, never prose.
+    # Identifier parameters can come from the typed request body or be inferred from the prompt.
     identifiers = {
         "report_id": report_id,
         "order_id": order_id,
@@ -490,7 +490,8 @@ def prepare_query(
         "organization_node_id": organization_node_id,
         "profile_id": profile_id,
     }
-    if not any(identifiers.values()):
+    identifiers = _extract_identifiers(text, identifiers)
+    if not any(value is not None for value in identifiers.values()):
         return {
             "ok": False,
             "mode": "no_match",
