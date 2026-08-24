@@ -1,6 +1,6 @@
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, ConfigDict, Field, field_validator
 
 
 class ApiResponse(BaseModel):
@@ -49,3 +49,19 @@ class DiagnoseDeliveryResponse(BaseModel):
     email_availability: list[dict[str, Any]] = Field(default_factory=list)
     findings: list[str] = Field(default_factory=list)
     next_checks: list[str] = Field(default_factory=list)
+
+
+class GenerateSqlQueryRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    prompt: str = Field(..., min_length=1, max_length=2000)
+
+
+class GenerateSqlQueryResponse(BaseModel):
+    ok: bool = True
+    query: str | None = None
+    params: dict[str, Any] = Field(default_factory=dict)
+    mode: str | None = None
+    source: str | None = None
+    routing: dict[str, Any] | None = None
+    message: str | None = None

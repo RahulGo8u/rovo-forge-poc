@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from typing import Any
 
+import httpx
 from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.routing import APIRoute
@@ -12,6 +13,8 @@ from .models import (
     ApiResponse,
     DiagnoseDeliveryRequest,
     DiagnoseDeliveryResponse,
+    GenerateSqlQueryRequest,
+    GenerateSqlQueryResponse,
 )
 from .repository import ReportsRepository
 from .services.triage import diagnose_delivery_config
@@ -397,6 +400,39 @@ async def diagnose_delivery_configuration(
 ) -> DiagnoseDeliveryResponse:
     number = parse_identifier(payload.lookup)
     return diagnose_delivery_config(repo, lookup=number, lookup_kind=payload.lookup_kind)
+
+
+@api.post("/generatesqlquery", response_model=GenerateSqlQueryResponse)
+async def generate_sql_query(payload: GenerateSqlQueryRequest) -> GenerateSqlQueryResponse:
+    try:
+        async with httpx.AsyncClient(timeout=45.0) as client:
+            response = await client.post(
+                f"{settings.human_to_sql_base_url}/api/v1/sql/generate",
+                json={
+                    "prompt": payload.prompt,
+                    "database": "DB7222",
+                    "query_mode": "auto",
+                    "environment": "test",
+                },
+            )
+            response.raise_for_status()
+            body = response.json()
+    except httpx.HTTPError as exc:
+        raise HTTPException(status_code=502, detail=f"Failed to contact Human-to-SQL service: {exc}") from exc
+
+    sql = body.get("sql") or body.get("query")
+    if not sql:
+        raise HTTPException(status_code=502, detail="Human-to-SQL service did not return SQL")
+
+    return GenerateSqlQueryResponse(
+        ok=True,
+        query=sql,
+        params=body.get("params") or {},
+        mode=body.get("mode"),
+        source=body.get("source") or "human-to-sql",
+        routing=body.get("routing"),
+        message=body.get("message") or "SQL generated successfully.",
+    )
 
 
 @api.get("/metadata/endpoint-catalog")

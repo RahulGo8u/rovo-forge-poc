@@ -180,6 +180,25 @@ def main() -> int:
     check("diagnose attention", bool(attention and attention["verdict"]["level"] == "attention"))
     expect_status("diagnose jira body", "POST", diagnose, 422, json={"lookup": "HCAT-123"})
 
+    generate_sql = expect_status(
+        "generate sql query",
+        "POST",
+        "/api/v1/generatesqlquery",
+        200,
+        json={"prompt": "Show the report status timeline for report 45036187"},
+    )
+    check(
+        "generate sql query returns SQL",
+        bool(generate_sql and isinstance(generate_sql.get("query"), str) and len(generate_sql["query"]) > 20),
+    )
+    expect_status(
+        "generate sql query rejects extra fields",
+        "POST",
+        "/api/v1/generatesqlquery",
+        422,
+        json={"prompt": "Show the report status timeline for report 45036187", "database": "DB7222"},
+    )
+
     catalog = expect_status("endpoint catalog", "GET", "/api/v1/metadata/endpoint-catalog", 200)
     check("catalog lists endpoints", bool(catalog and len(catalog.get("endpoints", [])) >= 25))
     check("catalog endpoint_count", bool(catalog and catalog.get("endpoint_count", 0) >= 25))

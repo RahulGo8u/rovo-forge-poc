@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     api_prefix: str = "/api/v1"
     port: int = 10000
     api_secret_key: str = ""
+    human_to_sql_base_url: str = "http://127.0.0.1:10001"
 
 
 @lru_cache

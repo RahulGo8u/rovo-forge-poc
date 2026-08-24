@@ -247,13 +247,61 @@ For "the customer did not receive their report":
 
 ---
 
-## Example calls
+## Generate SQL from a natural-language prompt
 
-`POST /api/v1/query/ask` turns a support question into read-only T-SQL. It routes between reviewed templates and schema-driven Gemini generation. Nothing is executed; the SQL is returned for a caller to run.
+The Reports API also exposes a prompt-to-SQL bridge to the Human-to-SQL service.
+
+### Endpoint
+
+```http
+POST /api/v1/generatesqlquery
+Content-Type: application/json
+X-API-Key: <your-secret>
+```
+
+### Request body
+
+The endpoint takes exactly one field:
+
+```json
+{
+  "prompt": "Show the report status timeline for report 45036187"
+}
+```
+
+This is intentionally limited to `prompt` only. Extra request fields are rejected with **422** to keep the consumer contract simple and explicit.
+
+The upstream Human-to-SQL service handles the default routing internally with:
+
+- `database`: `DB7222`
+- `query_mode`: `auto`
+
+### Response body
+
+```json
+{
+  "ok": true,
+  "query": "SELECT TOP (100) ...",
+  "params": {
+    "ReportID": 45036187
+  },
+  "mode": "template",
+  "source": "human-to-sql",
+  "routing": {
+    "target": {
+      "node": "db01",
+      "database": "DB7222"
+    }
+  },
+  "message": "SQL generated successfully."
+}
+```
+
+This endpoint is useful when a caller already has a user-facing support prompt but does not know which database or query mode to pass. The backend keeps that logic hidden and defaults the upstream call to the static default catalog and automatic routing path.
 
 ### Template/generation routing
 
-The default `QUERY_PLANNER_MODE=auto` protects the investment in optimized templates: it uses a matching template first and invokes generation only when no template matches. The response identifies the decision under `routing.selected_engine`.
+The Human-to-SQL service uses `auto` mode by default to protect the investment in reviewed templates: it attempts a matching template first and falls back to generated SQL only when no template matches. The response identifies the selected engine under `routing.engine` in the Human-to-SQL service response.
 
 | Mode | Behaviour |
 | --- | --- |
