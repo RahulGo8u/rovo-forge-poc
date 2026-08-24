@@ -9,8 +9,8 @@ The project currently includes two deployed services:
 - Human-to-SQL service (verified live):
   - Base URL: https://reports-human-to-sql-service.onrender.com
   - Health: https://reports-human-to-sql-service.onrender.com/health
-  - Generate SQL: https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate
-  - SQL-only output: https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate-sql-only
+  - Structured SQL response: https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate
+  - Raw SQL text response: https://reports-human-to-sql-service.onrender.com/api/v1/sql/query
   - Catalog: https://reports-human-to-sql-service.onrender.com/api/v1/catalog/databases
   - Verified health payload:
     ```json

@@ -10,8 +10,8 @@ The Human-to-SQL service is live on Render at:
 
 - Base URL: https://reports-human-to-sql-service.onrender.com
 - Health: https://reports-human-to-sql-service.onrender.com/health
-- SQL generation: https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate
-- SQL-only output: https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate-sql-only
+- Structured SQL response: https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate
+- Raw SQL text response: https://reports-human-to-sql-service.onrender.com/api/v1/sql/query
 - Catalog list: https://reports-human-to-sql-service.onrender.com/api/v1/catalog/databases
 
 Verified health response:
@@ -47,11 +47,11 @@ Invoke-RestMethod -Method Post -ContentType application/json `
   -Uri https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate -Body $body
 ```
 
-The raw SQL-only variant responds with just the generated SQL string:
+The raw SQL text variant responds with only the generated SQL string and is useful when the caller wants a single query value without the metadata envelope:
 
 ```powershell
 Invoke-RestMethod -Method Post -ContentType application/json `
-  -Uri https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate-sql-only `
+  -Uri https://reports-human-to-sql-service.onrender.com/api/v1/sql/query `
   -Body (@{ prompt = "Show the report status timeline for report 45036187" } | ConvertTo-Json)
 ```
 
