@@ -25,6 +25,40 @@ The project currently includes two deployed services:
 
 > Render free instances sleep after inactivity, so the first request may take a few seconds to wake the service.
 
+### Environment variables
+
+The project has two services, each with a local `.env` file and Render environment variables.
+
+#### Human-to-SQL service
+
+| Variable | Required | Default / example | Notes |
+| --- | --- | --- | --- |
+| `GEMINI_API_KEY` | No for reviewed templates; yes for generated SQL fallback | `""` | Required when `QUERY_PLANNER_MODE` is `generated_only` or when auto mode cannot match a reviewed template. |
+| `QUERY_PLANNER_MODE` | No | `auto` | Accepts `auto`, `templates_only`, or `generated_only`. |
+| `PORT` | No | `10001` | Local uvicorn port. |
+| `GEMINI_MODEL` | No | `gemini-2.5-flash` | Model used for SQL generation. |
+| `GEMINI_EMBEDDING_MODEL` | No | `gemini-embedding-001` | Embedding model for matching schema and catalog objects. |
+| `GEMINI_BASE_URL` | No | `https://generativelanguage.googleapis.com/v1beta` | Gemini API base URL. |
+| `GEMINI_TIMEOUT_SECONDS` | No | `30.0` | Request timeout. |
+| `GEMINI_MAX_OUTPUT_TOKENS` | No | `8192` | Output token cap. |
+| `NL2SQL_MAX_TABLES` | No | `12` | Max tables considered at once. |
+| `NL2SQL_ROW_LIMIT` | No | `200` | Query result limit during validation. |
+
+#### Reports API
+
+| Variable | Required | Default / example | Notes |
+| --- | --- | --- | --- |
+| `API_SECRET_KEY` | Yes for protected routes | `""` | Required for all `/api/v1` endpoints except `/health`. Keep it secret in Render and local `.env`. |
+| `HUMAN_TO_SQL_BASE_URL` | Yes for SQL bridge | `https://reports-human-to-sql-service.onrender.com` | Upstream Human-to-SQL service used by the SQL bridge. |
+| `PORT` | No | `10000` | Local server port. |
+| `APP_NAME` | No | `reports-api` | Service name shown in metadata. |
+| `APP_VERSION` | No | `0.6.0` | Service version string. |
+| `API_PREFIX` | No | `/api/v1` | Prefix for the public API. |
+
+#### Render recommendation
+
+Set the same names in the Render service settings for both apps. The local `.env` files are for development only and should not be checked into Git.
+
 ### Why this service exists
 
 The triage agent runs in the cloud and cannot reach the on-premise SQL Server, which uses Windows authentication. This service is a stand-in: it exposes the same shapes the agent would get from the `Report`, `ReportDetail`, `ReportFileDeliveryRule`, `CustomerEmailAvailability`, and Operations `Task` / `TaskState` tables, served from a seeded JSON fixture. **There is no database attached.** Responses are deterministic, safe to demo, and contain no customer data.

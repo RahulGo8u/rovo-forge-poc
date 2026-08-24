@@ -38,6 +38,19 @@ Every response uses one envelope so the agent can parse uniformly:
 
 `row_count` is `0` and `data` is `null` when a record legitimately does not exist. `meta` echoes the identifiers used, plus context such as `current_state_name`.
 
+### Environment variables
+
+The Reports API reads environment values from a local `.env` and from the Render environment for deployment.
+
+| Variable | Required | Default / example | Notes |
+| --- | --- | --- | --- |
+| `API_SECRET_KEY` | Yes | `""` | Required on every protected `/api/v1` route except `/health`. Never commit the real value. |
+| `HUMAN_TO_SQL_BASE_URL` | Yes | `https://reports-human-to-sql-service.onrender.com` | Upstream Human-to-SQL service used by the SQL bridge. |
+| `PORT` | No | `10000` | Local port for uvicorn. |
+| `APP_NAME` | No | `reports-api` | Service name in API metadata. |
+| `APP_VERSION` | No | `0.6.0` | Version string. |
+| `API_PREFIX` | No | `/api/v1` | API prefix. |
+
 ### Authentication
 
 Send `X-API-Key` on every `/api/v1` call. `/health` stays public so Render can health-check it.

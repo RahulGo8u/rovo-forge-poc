@@ -22,6 +22,36 @@ Verified health response:
 
 Render free instances sleep after inactivity, so the first request may take a few seconds to wake.
 
+## Environment variables
+
+The app reads values from a local `.env` file and from Render environment variables.
+
+### Required / commonly used
+
+| Variable | Required | Default / example | Notes |
+| --- | --- | --- | --- |
+| `GEMINI_API_KEY` | No for reviewed templates, yes for generated-only fallback | `""` | Needed when `QUERY_PLANNER_MODE` is `generated_only` or when auto mode cannot resolve a reviewed template. |
+| `QUERY_PLANNER_MODE` | No | `auto` | Valid values: `auto`, `templates_only`, `generated_only`. |
+| `PORT` | No | `10001` | Local uvicorn port. |
+| `GEMINI_MODEL` | No | `gemini-2.5-flash` | Gemini model used for generation. |
+| `GEMINI_EMBEDDING_MODEL` | No | `gemini-embedding-001` | Embedding model for catalog matching. |
+| `GEMINI_BASE_URL` | No | `https://generativelanguage.googleapis.com/v1beta` | Base URL for the Gemini API. |
+| `GEMINI_TIMEOUT_SECONDS` | No | `30.0` | Request timeout for Gemini calls. |
+| `GEMINI_MAX_OUTPUT_TOKENS` | No | `8192` | Max output tokens for generated SQL. |
+| `NL2SQL_MAX_TABLES` | No | `12` | Hard cap on tables considered by planner/generator. |
+| `NL2SQL_ROW_LIMIT` | No | `200` | Max rows considered during validation. |
+
+### Optional catalog/local setup values
+
+| Variable | Default / example | Notes |
+| --- | --- | --- |
+| `APP_NAME` | `human-to-sql-service` | Service name used in health output. |
+| `APP_VERSION` | `1.0.0` | Service version string. |
+| `API_PREFIX` | `/api/v1` | API prefix for routes. |
+| `SQLSERVER_DB01_HOST` | `DB01NODE1` | Used by offline catalog extraction. |
+| `SQLSERVER_DB02_HOST` | `DB02NODE1` | Used by offline catalog extraction. |
+| `SQLSERVER_ODBC_DRIVER` | `ODBC Driver 17 for SQL Server` | Used by offline catalog extraction. |
+
 ## Request contract
 
 The public request contract is intentionally simple:
