@@ -4,6 +4,57 @@ Standalone FastAPI and CLI service that converts natural-language questions into
 validated Microsoft SQL Server `SELECT` statements. It generates SQL only and
 has no query execution path or runtime dependency on `reports-api`.
 
+## Deployed Render endpoint
+
+The Human-to-SQL service is live on Render at:
+
+- Base URL: https://reports-human-to-sql-service.onrender.com
+- Health: https://reports-human-to-sql-service.onrender.com/health
+- SQL generation: https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate
+- SQL-only output: https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate-sql-only
+- Catalog list: https://reports-human-to-sql-service.onrender.com/api/v1/catalog/databases
+
+Verified health response:
+
+```json
+{"status":"ok","service":"human-to-sql-service","version":"1.0.0","execution":"disabled"}
+```
+
+Render free instances sleep after inactivity, so the first request may take a few seconds to wake.
+
+## Request contract
+
+The public request contract is intentionally simple:
+
+- prompt is required
+- environment defaults to test when omitted
+- database is optional and defaults to DB7222 when omitted
+- query_mode is optional and defaults to auto when omitted
+- report_id is optional; if supplied, the SQL generation step substitutes it into the final query when a prompt references it
+
+Example:
+
+```powershell
+$body = @{
+  prompt = "Show the report status timeline for report 45036187"
+  environment = "test"
+  database = "DB7222"
+  query_mode = "auto"
+  report_id = 45036187
+} | ConvertTo-Json
+
+Invoke-RestMethod -Method Post -ContentType application/json `
+  -Uri https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate -Body $body
+```
+
+The raw SQL-only variant responds with just the generated SQL string:
+
+```powershell
+Invoke-RestMethod -Method Post -ContentType application/json `
+  -Uri https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate-sql-only `
+  -Body (@{ prompt = "Show the report status timeline for report 45036187" } | ConvertTo-Json)
+```
+
 ## Setup and local run
 
 ```powershell
