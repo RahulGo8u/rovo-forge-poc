@@ -44,7 +44,7 @@ The Reports API reads environment values from a local `.env` and from the Render
 
 | Variable | Required | Default / example | Notes |
 | --- | --- | --- | --- |
-| `API_SECRET_KEY` | Yes | `""` | Required on every protected `/api/v1` route except `/health`. Never commit the real value. |
+| `API_SECRET_KEY` | No | `""` | Deprecated/optional. The Reports API is intentionally public and no longer enforces an API key. |
 | `HUMAN_TO_SQL_BASE_URL` | Yes | `https://reports-human-to-sql-service.onrender.com` | Upstream Human-to-SQL service used by the SQL bridge. |
 | `PORT` | No | `10000` | Local port for uvicorn. |
 | `APP_NAME` | No | `reports-api` | Service name in API metadata. |
@@ -53,14 +53,13 @@ The Reports API reads environment values from a local `.env` and from the Render
 
 ### Authentication
 
-Send `X-API-Key` on every `/api/v1` call. `/health` stays public so Render can health-check it.
+This service is intentionally public. There is no API key required for `/api/v1` calls or `/health` checks.
 
 ```http
 GET /api/v1/reports/44840403
-X-API-Key: <your-secret>
 ```
 
-`Authorization: Bearer <your-secret>` is also accepted. A missing or wrong key returns **401**. Never commit the real key; set `API_SECRET_KEY` in the Render environment and in a local `.env` (gitignored).
+If you still keep `API_SECRET_KEY` set in the environment, it is ignored by the app. The public service does not reject requests for missing or invalid keys.
 
 | | |
 | --- | --- |
@@ -76,7 +75,6 @@ X-API-Key: <your-secret>
 | Code | When |
 | --- | --- |
 | 200 | Found, or an empty collection (`row_count: 0`) |
-| 401 | Missing or wrong API key on an `/api/v1` route |
 | 404 | Unknown ReportID, TaskID, CustomerID, or a report with no such sub-record |
 | 422 | Identifier is not a positive whole number (text, `0`, or a Jira key like `PE-658`) |
 
@@ -103,7 +101,7 @@ Any of these numbers work with `find-by-identifier`, `diagnose-delivery-configur
 
 Base URL: `https://reports-api-4aux.onrender.com`
 
-**40** routes (39 under `/api/v1` + public `/health`). Every path spells out what it returns, with no abbreviations or run-together words. Live catalog: [`/api/v1/metadata/endpoint-catalog`](https://reports-api-4aux.onrender.com/api/v1/metadata/endpoint-catalog), which also lists the common triage starting points under `triage_entry_points`.
+**40** routes (all public under `/api/v1` + `/health`). Every path spells out what it returns, with no abbreviations or run-together words. Live catalog: [`/api/v1/metadata/endpoint-catalog`](https://reports-api-4aux.onrender.com/api/v1/metadata/endpoint-catalog), which also lists the common triage starting points under `triage_entry_points`.
 
 ### Report status and operations workflow
 

@@ -3,9 +3,6 @@ from __future__ import annotations
 
 import os
 
-TEST_KEY = "validate-local-secret-not-for-production"
-os.environ["API_SECRET_KEY"] = TEST_KEY
-
 from app.config import get_settings
 import app.config as config
 
@@ -18,7 +15,6 @@ from app.main import app
 
 client = TestClient(app)
 FAILED: list[str] = []
-AUTH = {"X-API-Key": TEST_KEY}
 
 
 def check(name: str, ok: bool, detail: str = "") -> None:
@@ -35,13 +31,13 @@ def expect_status(
     path: str,
     status: int,
     *,
-    auth: bool = True,
+    auth: bool = False,
     extra_headers: dict[str, str] | None = None,
     **kwargs,
 ) -> dict | list | None:
     headers = dict(kwargs.pop("headers", {}) or {})
     if auth:
-        headers.update(AUTH)
+        headers.update({"X-API-Key": "unused-key"})
     if extra_headers:
         headers.update(extra_headers)
     response = client.request(method, path, headers=headers, **kwargs)
@@ -53,19 +49,7 @@ def expect_status(
 
 def main() -> int:
     health = expect_status("health public", "GET", "/health", 200, auth=False)
-    check("health reports api_key", bool(health and health.get("auth") == "api_key"))
-
-    expect_status("api without key", "GET", "/api/v1/reports/44840403", 401, auth=False)
-    expect_status("api wrong key", "GET", "/api/v1/reports/44840403", 401, extra_headers={"X-API-Key": "wrong-key"})
-    bearer = expect_status(
-        "api bearer token",
-        "GET",
-        "/api/v1/reports/44840403",
-        200,
-        auth=False,
-        extra_headers={"Authorization": f"Bearer {TEST_KEY}"},
-    )
-    check("bearer returns report", bool(bearer and bearer["data"]["ReportID"] == 44840403))
+    check("health reports public auth", bool(health and health.get("auth") == "none"))
 
     report = expect_status("getReportById", "GET", "/api/v1/reports/44840403", 200)
     check("getReportById data", bool(report and report["data"]["ReportID"] == 44840403))
@@ -203,8 +187,8 @@ def main() -> int:
     check("catalog lists endpoints", bool(catalog and len(catalog.get("endpoints", [])) >= 25))
     check("catalog endpoint_count", bool(catalog and catalog.get("endpoint_count", 0) >= 25))
     check(
-        "catalog describes api_key",
-        bool(catalog and (catalog.get("authentication") or {}).get("type") == "api_key"),
+        "catalog describes no auth",
+        bool(catalog and (catalog.get("authentication") or {}).get("type") == "none"),
     )
     entry_points = (catalog or {}).get("triage_entry_points") or {}
     check("triage entry points advertised", len(entry_points) >= 10)

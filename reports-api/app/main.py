@@ -7,7 +7,6 @@ from fastapi import APIRouter, Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.routing import APIRoute
 
-from .auth import require_api_key
 from .config import settings
 from .models import (
     ApiResponse,
@@ -33,7 +32,7 @@ app = FastAPI(
     version=settings.app_version,
     description=(
         "Standalone Reports API for the Triage Agent. "
-        "All /api/v1 routes require header X-API-Key (or Authorization: Bearer). "
+        "This service is intentionally public and does not require an API key. "
         "/health is public for Render health checks."
     ),
 )
@@ -46,7 +45,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-api = APIRouter(prefix=settings.api_prefix, dependencies=[Depends(require_api_key)])
+api = APIRouter(prefix=settings.api_prefix)
 
 
 def get_repo() -> ReportsRepository:
@@ -73,8 +72,8 @@ async def health() -> dict[str, Any]:
         "service": settings.app_name,
         "version": settings.app_version,
         "data_source": "seed",
-        "auth": "api_key",
-        "public_paths": ["/health"],
+        "auth": "none",
+        "public_paths": ["/health", "/api/v1"],
     }
 
 
@@ -446,7 +445,7 @@ async def get_endpoint_catalog() -> dict[str, Any]:
                 {
                     "method": method,
                     "path": route.path,
-                    "requires_api_key": route.path.startswith(prefix),
+                    "requires_api_key": False,
                     "operation": route.name,
                 }
             )
@@ -457,9 +456,9 @@ async def get_endpoint_catalog() -> dict[str, Any]:
         "data_source": "seed",
         "endpoint_count": len(endpoints),
         "authentication": {
-            "type": "api_key",
-            "header": "X-API-Key",
-            "alternate_header": "Authorization: Bearer <key>",
+            "type": "none",
+            "header": None,
+            "alternate_header": None,
         },
         "sample_identifiers": {
             "ReportID": [44840403, 72391747, 50110200, 61220311],
