@@ -239,6 +239,20 @@ class ApiContractTests(unittest.TestCase):
         self.assertTrue(body["ok"])
         self.assertIn("@ReportID", body["sql"])
 
+    def test_defaults_database_and_query_mode_when_not_provided(self) -> None:
+        response = self.client.post(
+            "/api/v1/sql/generate",
+            json={
+                "prompt": "show report status timeline for report 45036187",
+                "environment": "test",
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        body = response.json()
+        self.assertTrue(body["ok"])
+        self.assertEqual(body["routing"]["target"]["database"], "DB7222")
+        self.assertIn(body["mode"], ["auto", "template", "templates_only"])
+
     def test_catalog_endpoint_exposes_readiness(self) -> None:
         response = self.client.get("/api/v1/catalog/databases")
         self.assertEqual(response.status_code, 200)
@@ -269,13 +283,13 @@ class ApiContractTests(unittest.TestCase):
         self.assertIn("target", body["routing"])
         self.assertIn("engine", body["routing"])
 
-    def test_db02_returns_catalog_unavailable(self) -> None:
+    def test_omitted_database_defaults_to_db7222(self) -> None:
         response = self.client.post(
             "/api/v1/sql/generate",
             json={"prompt": "show operations workflow queue tasks"},
         )
-        self.assertEqual(response.status_code, 503)
-        self.assertEqual(response.json()["detail"]["mode"], "catalog_unavailable")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.json()["routing"]["target"]["database"], "DB7222")
 
     def test_conflicting_node_aliases_are_invalid(self) -> None:
         response = self.client.post(

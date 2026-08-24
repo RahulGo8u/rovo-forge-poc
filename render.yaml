@@ -16,3 +16,21 @@ services:
         value: /api/v1
       - key: API_SECRET_KEY
         sync: false
+      - key: HUMAN_TO_SQL_BASE_URL
+        value: https://reports-human-to-sql-service.onrender.com
+
+  - type: web
+    name: reports-human-to-sql-service
+    runtime: python
+    plan: free
+    rootDir: human-to-sql-service
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: APP_NAME
+        value: human-to-sql-service
+      - key: GEMINI_API_KEY
+        sync: false
