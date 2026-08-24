@@ -198,6 +198,17 @@ def repair_literal_identifiers(sql: str, params: dict[str, int]) -> str:
     return repaired
 
 
+def materialize_bound_params(sql: str, params: dict[str, int]) -> str:
+    """Replace bound parameters such as @ReportID with the actual numeric value."""
+    materialized = sql
+    for column_name, value in sorted((name, num) for name, num in params.items() if num is not None):
+        placeholder = COLUMN_TO_PARAM.get(column_name)
+        if not placeholder:
+            continue
+        materialized = re.sub(re.escape(placeholder), str(value), materialized)
+    return materialized
+
+
 def _validate_columns(sql: str, allowed: dict[str, set[str]]) -> None:
     """Reject hallucinated columns by resolving each reference against the pack."""
     statement = parse(sql, read="tsql")[0]

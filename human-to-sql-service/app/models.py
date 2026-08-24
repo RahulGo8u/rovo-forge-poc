@@ -9,16 +9,16 @@ class SqlGenerateRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     prompt: str = Field(min_length=1, max_length=2000)
-    environment: Literal["test"] = "test"
+    environment: Literal["test"] | None = "test"
     node: Literal["db01", "db02"] | None = None
     server: Literal["db01", "db02"] | None = None
     database: str | None = Field(
-        default="DB7222",
+        default=None,
         min_length=1,
         max_length=128,
         pattern=r"^[A-Za-z0-9_. -]+$",
     )
-    query_mode: Literal["auto", "templates_only", "generated_only"] = "auto"
+    query_mode: Literal["auto", "templates_only", "generated_only"] | None = None
     report_id: int | None = Field(default=None, ge=1)
     order_id: int | None = Field(default=None, ge=1)
     customer_id: int | None = Field(default=None, ge=1)

@@ -5,7 +5,7 @@ import re
 from typing import Any, Literal
 
 from ..config import settings
-from .nl2sql import generate_sql
+from .nl2sql import generate_sql, materialize_bound_params
 from .planner import INTENTS, prepare_query
 from .target_router import resolve_target
 
@@ -179,8 +179,11 @@ def prepare_or_generate_query(
                 selected_engine="template",
                 mode_source=source,
             )
+        template = prepare_query(**arguments)
+        if template.get("ok") and template.get("params"):
+            template["sql"] = materialize_bound_params(template["sql"], template["params"])
         return _with_route(
-            prepare_query(**arguments),
+            template,
             target_routing=target_routing,
             requested_mode=selected_mode,
             selected_engine="template",
@@ -188,8 +191,11 @@ def prepare_or_generate_query(
         )
 
     if selected_mode == "generated_only":
+        generated = generate_sql(**arguments)
+        if generated.get("ok") and generated.get("params"):
+            generated["sql"] = materialize_bound_params(generated["sql"], generated["params"])
         return _with_route(
-            generate_sql(**arguments),
+            generated,
             target_routing=target_routing,
             requested_mode=selected_mode,
             selected_engine="generated",
@@ -206,6 +212,7 @@ def prepare_or_generate_query(
         }
     )
     if template.get("ok"):
+        template["sql"] = materialize_bound_params(template["sql"], template["params"])
         return _with_route(
             template,
             target_routing=target_routing,
@@ -215,6 +222,8 @@ def prepare_or_generate_query(
         )
 
     generated = generate_sql(**arguments)
+    if generated.get("ok") and generated.get("params"):
+        generated["sql"] = materialize_bound_params(generated["sql"], generated["params"])
     return _with_route(
         generated,
         target_routing=target_routing,

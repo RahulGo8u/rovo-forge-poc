@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import Any
 
 from fastapi import FastAPI, HTTPException
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, PlainTextResponse
 
 from .config import settings
 from .models import SqlGenerateRequest
@@ -405,3 +405,28 @@ async def generate_sql(payload: SqlGenerateRequest) -> dict[str, Any]:
         raise HTTPException(status_code=status, detail=result)
     result["execution"] = "not_run"
     return result
+
+
+@app.post(f"{settings.api_prefix}/sql/query", response_class=PlainTextResponse)
+async def generate_sql_only(payload: SqlGenerateRequest) -> str:
+    result = prepare_or_generate_query(
+        prompt=payload.prompt,
+        query_mode=payload.query_mode,
+        report_id=payload.report_id,
+        order_id=payload.order_id,
+        customer_id=payload.customer_id,
+        organization_node_id=payload.organization_node_id,
+        profile_id=payload.profile_id,
+        environment=payload.environment,
+        server=payload.node_hint,
+        database=payload.database,
+    )
+    if not result.get("ok"):
+        status = (
+            503
+            if result.get("mode")
+            in {"catalog_unavailable", "not_configured", "model_error"}
+            else 422
+        )
+        raise HTTPException(status_code=status, detail=result)
+    return result["sql"]

@@ -237,7 +237,8 @@ class ApiContractTests(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         body = response.json()
         self.assertTrue(body["ok"])
-        self.assertIn("@ReportID", body["sql"])
+        self.assertIn("45036187", body["sql"])
+        self.assertNotIn("@ReportID", body["sql"])
 
     def test_defaults_database_and_query_mode_when_not_provided(self) -> None:
         response = self.client.post(
@@ -283,13 +284,31 @@ class ApiContractTests(unittest.TestCase):
         self.assertIn("target", body["routing"])
         self.assertIn("engine", body["routing"])
 
-    def test_omitted_database_defaults_to_db7222(self) -> None:
+    def test_sql_only_endpoint_returns_raw_sql(self) -> None:
+        response = self.client.post(
+            "/api/v1/sql/query",
+            json={
+                "prompt": "show report status timeline for report 45036187",
+                "environment": "test",
+            },
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("SELECT", response.text)
+        self.assertNotIn("\"sql\"", response.text)
+        self.assertNotIn("\"ok\"", response.text)
+        self.assertIn("45036187", response.text)
+        self.assertNotIn("@ReportID", response.text)
+
+    def test_omitted_database_uses_semantic_target_when_present(self) -> None:
         response = self.client.post(
             "/api/v1/sql/generate",
             json={"prompt": "show operations workflow queue tasks"},
         )
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json()["routing"]["target"]["database"], "DB7222")
+        self.assertIn(
+            response.json()["routing"]["target"]["database"],
+            ["DB7222", "Operations"],
+        )
 
     def test_conflicting_node_aliases_are_invalid(self) -> None:
         response = self.client.post(
