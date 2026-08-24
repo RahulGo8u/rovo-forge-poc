@@ -2,6 +2,30 @@
 
 HTTP API that gives the **Triage Agent** the read-only lookups it needs when a customer says *"I never got my report, email, or DXF file."* Given any identifier, it answers three separate questions: is the **delivery configuration** correct, what is the **report status**, and where is the **operations workflow task**.
 
+## Deployed Render endpoints
+
+The project now includes two deployed services:
+
+The Reports API SQL bridge intentionally calls the raw SQL-text endpoint from Human-to-SQL so it can return a single query string to callers.
+
+- Human-to-SQL service (verified live):
+  - Base URL: https://reports-human-to-sql-service.onrender.com
+  - Health: https://reports-human-to-sql-service.onrender.com/health
+  - Generate SQL: https://reports-human-to-sql-service.onrender.com/api/v1/sql/generate
+  - Catalog: https://reports-human-to-sql-service.onrender.com/api/v1/catalog/databases
+  - Verified health payload:
+    ```json
+    {"status":"ok","service":"human-to-sql-service","version":"1.0.0","execution":"disabled"}
+    ```
+
+- Reports API (verified live):
+  - Base URL: https://reports-api-4aux.onrender.com
+  - Health: https://reports-api-4aux.onrender.com/health
+  - SQL generator bridge: https://reports-api-4aux.onrender.com/api/v1/generatesqlquery
+  - Swagger docs: https://reports-api-4aux.onrender.com/docs
+
+> Render free instances spin down after inactivity, so the first request may take a few seconds to wake the service.
+
 ### Why this service exists
 
 The triage agent runs in the cloud and cannot reach the on-premise SQL Server, which uses Windows authentication. This service is a stand-in: it exposes the same shapes the agent would get from the `Report`, `ReportDetail`, `ReportFileDeliveryRule`, `CustomerEmailAvailability`, and Operations `Task` / `TaskState` tables, served from a seeded JSON fixture. **There is no database attached.** Responses are deterministic, safe to demo, and contain no customer data.
@@ -258,6 +282,8 @@ POST /api/v1/generatesqlquery
 Content-Type: application/json
 X-API-Key: <your-secret>
 ```
+
+This bridge calls the upstream Human-to-SQL raw SQL endpoint at `/api/v1/sql/query`, not the structured `/api/v1/sql/generate` route.
 
 ### Request body
 

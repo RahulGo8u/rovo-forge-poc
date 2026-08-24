@@ -407,7 +407,7 @@ async def generate_sql_query(payload: GenerateSqlQueryRequest) -> GenerateSqlQue
     try:
         async with httpx.AsyncClient(timeout=45.0) as client:
             response = await client.post(
-                f"{settings.human_to_sql_base_url}/api/v1/sql/generate",
+                f"{settings.human_to_sql_base_url}/api/v1/sql/query",
                 json={
                     "prompt": payload.prompt,
                     "database": "DB7222",
@@ -416,22 +416,21 @@ async def generate_sql_query(payload: GenerateSqlQueryRequest) -> GenerateSqlQue
                 },
             )
             response.raise_for_status()
-            body = response.json()
+            sql = response.text.strip()
     except httpx.HTTPError as exc:
         raise HTTPException(status_code=502, detail=f"Failed to contact Human-to-SQL service: {exc}") from exc
 
-    sql = body.get("sql") or body.get("query")
     if not sql:
         raise HTTPException(status_code=502, detail="Human-to-SQL service did not return SQL")
 
     return GenerateSqlQueryResponse(
         ok=True,
         query=sql,
-        params=body.get("params") or {},
-        mode=body.get("mode"),
-        source=body.get("source") or "human-to-sql",
-        routing=body.get("routing"),
-        message=body.get("message") or "SQL generated successfully.",
+        params={},
+        mode="query",
+        source="human-to-sql",
+        routing=None,
+        message="SQL generated successfully.",
     )
 
 

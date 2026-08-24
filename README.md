@@ -17,11 +17,11 @@ The project currently includes two deployed services:
     {"status":"ok","service":"human-to-sql-service","version":"1.0.0","execution":"disabled"}
     ```
 
-- Reports API:
-  - Base URL: https://reports-api.onrender.com
-  - Health: https://reports-api.onrender.com/health
-  - SQL generator bridge: https://reports-api.onrender.com/api/v1/generatesqlquery
-  - Swagger docs: https://reports-api.onrender.com/docs
+- Reports API (verified live):
+  - Base URL: https://reports-api-4aux.onrender.com
+  - Health: https://reports-api-4aux.onrender.com/health
+  - SQL generator bridge: https://reports-api-4aux.onrender.com/api/v1/generatesqlquery
+  - Swagger docs: https://reports-api-4aux.onrender.com/docs
 
 > Render free instances sleep after inactivity, so the first request may take a few seconds to wake the service.
 
